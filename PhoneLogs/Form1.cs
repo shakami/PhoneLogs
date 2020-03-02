@@ -10,11 +10,21 @@ using System.Windows.Forms;
 
 namespace PhoneLogs
 {
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
-        public Form1()
+        public MainForm()
         {
             InitializeComponent();
+        }
+
+        private void InputFileBtn_Click(object sender, EventArgs e)
+        {
+            this.OpenFileDialog.Filter = "XLSX|*.xlsx";
+            if (this.OpenFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                this.InputFilePathTextBox.Text = this.OpenFileDialog.FileName;
+            }
+
         }
     }
 }
