@@ -38,6 +38,8 @@
             this.OpenFolderBtn = new System.Windows.Forms.Button();
             this.OpenPDFBtn = new System.Windows.Forms.Button();
             this.SettingsTab = new System.Windows.Forms.TabPage();
+            this.OutputSameAsInputLabel = new System.Windows.Forms.Label();
+            this.OutputPathResetBtn = new System.Windows.Forms.Button();
             this.OutputFolderLabel = new System.Windows.Forms.Label();
             this.EmployeesFilterBox = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -47,8 +49,7 @@
             this.SheetNumberPicker = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
             this.FolderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
-            this.OutputPathResetBtn = new System.Windows.Forms.Button();
-            this.OutputSameAsInputLabel = new System.Windows.Forms.Label();
+            this.AdvancedSettingsBtn = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.SettingsTab.SuspendLayout();
@@ -148,6 +149,7 @@
             // 
             // SettingsTab
             // 
+            this.SettingsTab.Controls.Add(this.AdvancedSettingsBtn);
             this.SettingsTab.Controls.Add(this.OutputSameAsInputLabel);
             this.SettingsTab.Controls.Add(this.OutputPathResetBtn);
             this.SettingsTab.Controls.Add(this.OutputFolderLabel);
@@ -166,6 +168,27 @@
             this.SettingsTab.Text = "Settings";
             this.SettingsTab.UseVisualStyleBackColor = true;
             this.SettingsTab.Enter += new System.EventHandler(this.SettingsTab_Enter);
+            // 
+            // OutputSameAsInputLabel
+            // 
+            this.OutputSameAsInputLabel.AutoSize = true;
+            this.OutputSameAsInputLabel.Location = new System.Drawing.Point(86, 35);
+            this.OutputSameAsInputLabel.Name = "OutputSameAsInputLabel";
+            this.OutputSameAsInputLabel.Size = new System.Drawing.Size(107, 13);
+            this.OutputSameAsInputLabel.TabIndex = 10;
+            this.OutputSameAsInputLabel.Text = "Same as Input Folder";
+            this.OutputSameAsInputLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.OutputSameAsInputLabel.Visible = false;
+            // 
+            // OutputPathResetBtn
+            // 
+            this.OutputPathResetBtn.Location = new System.Drawing.Point(348, 48);
+            this.OutputPathResetBtn.Name = "OutputPathResetBtn";
+            this.OutputPathResetBtn.Size = new System.Drawing.Size(75, 23);
+            this.OutputPathResetBtn.TabIndex = 9;
+            this.OutputPathResetBtn.Text = "Reset";
+            this.OutputPathResetBtn.UseVisualStyleBackColor = true;
+            this.OutputPathResetBtn.Click += new System.EventHandler(this.OutputPathResetBtn_Click);
             // 
             // OutputFolderLabel
             // 
@@ -237,26 +260,15 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Sheet Number:";
             // 
-            // OutputPathResetBtn
+            // AdvancedSettingsBtn
             // 
-            this.OutputPathResetBtn.Location = new System.Drawing.Point(348, 48);
-            this.OutputPathResetBtn.Name = "OutputPathResetBtn";
-            this.OutputPathResetBtn.Size = new System.Drawing.Size(75, 23);
-            this.OutputPathResetBtn.TabIndex = 9;
-            this.OutputPathResetBtn.Text = "Reset";
-            this.OutputPathResetBtn.UseVisualStyleBackColor = true;
-            this.OutputPathResetBtn.Click += new System.EventHandler(this.OutputPathResetBtn_Click);
-            // 
-            // OutputSameAsInputLabel
-            // 
-            this.OutputSameAsInputLabel.AutoSize = true;
-            this.OutputSameAsInputLabel.Location = new System.Drawing.Point(86, 35);
-            this.OutputSameAsInputLabel.Name = "OutputSameAsInputLabel";
-            this.OutputSameAsInputLabel.Size = new System.Drawing.Size(107, 13);
-            this.OutputSameAsInputLabel.TabIndex = 10;
-            this.OutputSameAsInputLabel.Text = "Same as Input Folder";
-            this.OutputSameAsInputLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.OutputSameAsInputLabel.Visible = false;
+            this.AdvancedSettingsBtn.Location = new System.Drawing.Point(6, 204);
+            this.AdvancedSettingsBtn.Name = "AdvancedSettingsBtn";
+            this.AdvancedSettingsBtn.Size = new System.Drawing.Size(75, 23);
+            this.AdvancedSettingsBtn.TabIndex = 11;
+            this.AdvancedSettingsBtn.Text = "Advanced";
+            this.AdvancedSettingsBtn.UseVisualStyleBackColor = true;
+            this.AdvancedSettingsBtn.Click += new System.EventHandler(this.AdvancedSettingsBtn_Click);
             // 
             // MainForm
             // 
@@ -298,6 +310,7 @@
         private System.Windows.Forms.Button OpenFolderBtn;
         private System.Windows.Forms.Button OutputPathResetBtn;
         private System.Windows.Forms.Label OutputSameAsInputLabel;
+        private System.Windows.Forms.Button AdvancedSettingsBtn;
     }
 }
 

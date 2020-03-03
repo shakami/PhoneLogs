@@ -35,36 +35,24 @@ namespace PhoneLogs
 
             var pdfPath = outputPath + ".pdf";
             var csvPath = outputPath + ".csv";
-
-            int _session_Id_column = 1;
-            int _from_name_column = 2;
-            int _from_number_column = 3;
-            int _to_name_column = 4;
-            int _to_number_column = 5;
-            int _result_column = 6;
-            int _length_column = 7;
-            int _handle_time_column = 8;
-            int _start_time_column = 9;
-            int _direction_column = 10;
-            int _queue_column = 11;
-
+            
             var sheetToProcess = Properties.Settings.Default.Sheet;
 
             var excelApp = new ExcelToCSVService(InputFilePathLabel.Text, sheetToProcess);
 
             excelApp.GetOutput(csvPath);
-
-            var csvToCallService = new CSVToCallsService(_session_Id_column,
-                                                         _from_name_column,
-                                                         _from_number_column,
-                                                         _to_name_column,
-                                                         _to_number_column,
-                                                         _result_column,
-                                                         _length_column,
-                                                         _handle_time_column,
-                                                         _start_time_column,
-                                                         _direction_column,
-                                                         _queue_column);
+            var columns = Properties.AdvancedSettings.Default;
+            var csvToCallService = new CSVToCallsService(columns.SessionIDColumn,
+                                                         columns.FromNameColumn,
+                                                         columns.FromNumberColumn,
+                                                         columns.ToNameColumn,
+                                                         columns.ToNumberColumn,
+                                                         columns.CallResultColumn,
+                                                         columns.CallLengthColumn,
+                                                         columns.HandleTimeColumn,
+                                                         columns.StartTimeColumn,
+                                                         columns.CallDirectionColumn,
+                                                         columns.CallQueueColumn);
 
             var calls = csvToCallService.ParseCSV(csvPath);
 
@@ -204,6 +192,12 @@ namespace PhoneLogs
         {
             OutputFolderLabel.Text = "";
             OutputSameAsInputLabel.Visible = true;
+        }
+
+        private void AdvancedSettingsBtn_Click(object sender, EventArgs e)
+        {
+            AdvancedSettings advancedSettings = new AdvancedSettings();
+            advancedSettings.ShowDialog();
         }
     }
 }

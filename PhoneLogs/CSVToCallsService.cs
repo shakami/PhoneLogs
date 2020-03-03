@@ -73,6 +73,8 @@ namespace PhoneLogs
 
             sr.Close();
 
+            File.Delete(filePath);
+
             return calls;
 
         }
