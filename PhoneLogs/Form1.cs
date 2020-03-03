@@ -42,14 +42,20 @@ namespace PhoneLogs
             OpenPDFBtn.Enabled = false;
             OpenFolderBtn.Enabled = false;
 
-
             var inputPath = InputFilePathLabel.Text;
+            var outputFolder = Properties.Settings.Default.OutputFoler;
+            string outputPath;
 
-            if (string.IsNullOrWhiteSpace(inputPath))
+            if (String.IsNullOrWhiteSpace(outputFolder))
             {
-                ResultLabel.Text = "Please Select A File First!";
-                return;
+                outputPath = GetFilePathNoExtension(inputPath);
+            } else
+            {
+                outputPath = outputFolder + "\\" + GetFileNameNoExtension(inputPath);
             }
+            
+            var pdfPath = outputPath + ".pdf";
+            var csvPath = outputPath + ".csv";
 
             int _session_Id_column = 1;
             int _from_name_column = 2;
@@ -66,8 +72,6 @@ namespace PhoneLogs
             var sheetToProcess = Properties.Settings.Default.Sheet;
 
             var excelApp = new ExcelToCSVService(InputFilePathLabel.Text, sheetToProcess);
-
-            var csvPath = inputPath + ".csv";
 
             excelApp.GetOutput(csvPath);
 
@@ -101,8 +105,6 @@ namespace PhoneLogs
 
             var employees = Properties.Settings.Default.Employees.Cast<String>().ToList();
             var parsedCalls = callProcessing.GetCallsPerPerson(employees);
-            
-            var pdfPath = Properties.Settings.Default.OutputFoler + "test.pdf";
 
             FileInfo file = new FileInfo(pdfPath);
             file.Directory.Create();
@@ -159,7 +161,7 @@ namespace PhoneLogs
             doc.Add(table);
 
             doc.Close();
-            
+
 
             // StreamWriter sw = new StreamWriter("data.txt");
 
@@ -279,13 +281,38 @@ namespace PhoneLogs
         {
             if (FolderBrowserDialog.ShowDialog() == DialogResult.OK)
             {
+                OutputSameAsInputLabel.Visible = false;
                 OutputFolderLabel.Text = FolderBrowserDialog.SelectedPath;
             }
         }
 
         private void OpenPDFBtn_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start("test.pdf");
+            var inputPath = InputFilePathLabel.Text;
+            var outputFolder = Properties.Settings.Default.OutputFoler;
+            string pdfPath;
+            if (string.IsNullOrWhiteSpace(outputFolder))
+            {
+                pdfPath = GetFilePathNoExtension(inputPath) + ".pdf";
+            } else
+            {
+                pdfPath = outputFolder + "\\" + GetFileNameNoExtension(inputPath) + ".pdf";
+            }
+
+            System.Diagnostics.Process.Start(pdfPath);
+        }
+
+        private string GetFilePathNoExtension(string fullPath)
+        {
+            return fullPath.Substring(0, fullPath.LastIndexOf('.'));
+        }
+
+        private string GetFileNameNoExtension(string fullPath)
+        {
+            int slashIndex = fullPath.LastIndexOf('\\');
+            string fileName = fullPath.Substring(slashIndex + 1, fullPath.Length - slashIndex - 1);
+            var result = fileName.Substring(0, fileName.LastIndexOf('.'));
+            return result;
         }
 
         private void OpenFolderBtn_Click(object sender, EventArgs e)
@@ -301,6 +328,14 @@ namespace PhoneLogs
         private void SettingsTab_Enter(object sender, EventArgs e)
         {
             SheetNumberPicker.Value = Properties.Settings.Default.Sheet;
+
+            var outputFolder = Properties.Settings.Default.OutputFoler;
+            if (string.IsNullOrWhiteSpace(outputFolder))
+            {
+                OutputSameAsInputLabel.Visible = true;
+            }
+            OutputFolderLabel.Text = outputFolder;
+
             var employees = new List<string>();
             if (Properties.Settings.Default.Employees != null)
             {
@@ -331,11 +366,21 @@ namespace PhoneLogs
                 {
                     Properties.Settings.Default.Employees.Add(employee.Trim());
                 }
-            } else
+            }
+            else
             {
                 Properties.Settings.Default.Employees = new System.Collections.Specialized.StringCollection();
             }
+
+            Properties.Settings.Default.OutputFoler = OutputFolderLabel.Text;
+
             Properties.Settings.Default.Save();
+        }
+
+        private void OutputPathResetBtn_Click(object sender, EventArgs e)
+        {
+            OutputFolderLabel.Text = "";
+            OutputSameAsInputLabel.Visible = true;
         }
     }
 }

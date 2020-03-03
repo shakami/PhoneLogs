@@ -47,6 +47,8 @@
             this.SheetNumberPicker = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
             this.FolderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
+            this.OutputPathResetBtn = new System.Windows.Forms.Button();
+            this.OutputSameAsInputLabel = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.SettingsTab.SuspendLayout();
@@ -146,6 +148,8 @@
             // 
             // SettingsTab
             // 
+            this.SettingsTab.Controls.Add(this.OutputSameAsInputLabel);
+            this.SettingsTab.Controls.Add(this.OutputPathResetBtn);
             this.SettingsTab.Controls.Add(this.OutputFolderLabel);
             this.SettingsTab.Controls.Add(this.EmployeesFilterBox);
             this.SettingsTab.Controls.Add(this.label3);
@@ -167,9 +171,8 @@
             // 
             this.OutputFolderLabel.Location = new System.Drawing.Point(27, 48);
             this.OutputFolderLabel.Name = "OutputFolderLabel";
-            this.OutputFolderLabel.Size = new System.Drawing.Size(312, 23);
+            this.OutputFolderLabel.Size = new System.Drawing.Size(234, 23);
             this.OutputFolderLabel.TabIndex = 8;
-            this.OutputFolderLabel.Text = "Same as Input Folder";
             this.OutputFolderLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // EmployeesFilterBox
@@ -191,7 +194,7 @@
             // 
             // ModifyOutputFolderBtn
             // 
-            this.ModifyOutputFolderBtn.Location = new System.Drawing.Point(345, 48);
+            this.ModifyOutputFolderBtn.Location = new System.Drawing.Point(267, 48);
             this.ModifyOutputFolderBtn.Name = "ModifyOutputFolderBtn";
             this.ModifyOutputFolderBtn.Size = new System.Drawing.Size(75, 23);
             this.ModifyOutputFolderBtn.TabIndex = 5;
@@ -234,6 +237,27 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Sheet Number:";
             // 
+            // OutputPathResetBtn
+            // 
+            this.OutputPathResetBtn.Location = new System.Drawing.Point(348, 48);
+            this.OutputPathResetBtn.Name = "OutputPathResetBtn";
+            this.OutputPathResetBtn.Size = new System.Drawing.Size(75, 23);
+            this.OutputPathResetBtn.TabIndex = 9;
+            this.OutputPathResetBtn.Text = "Reset";
+            this.OutputPathResetBtn.UseVisualStyleBackColor = true;
+            this.OutputPathResetBtn.Click += new System.EventHandler(this.OutputPathResetBtn_Click);
+            // 
+            // OutputSameAsInputLabel
+            // 
+            this.OutputSameAsInputLabel.AutoSize = true;
+            this.OutputSameAsInputLabel.Location = new System.Drawing.Point(86, 35);
+            this.OutputSameAsInputLabel.Name = "OutputSameAsInputLabel";
+            this.OutputSameAsInputLabel.Size = new System.Drawing.Size(107, 13);
+            this.OutputSameAsInputLabel.TabIndex = 10;
+            this.OutputSameAsInputLabel.Text = "Same as Input Folder";
+            this.OutputSameAsInputLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.OutputSameAsInputLabel.Visible = false;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -273,6 +297,8 @@
         private System.Windows.Forms.Label OutputFolderLabel;
         private System.Windows.Forms.Button OpenPDFBtn;
         private System.Windows.Forms.Button OpenFolderBtn;
+        private System.Windows.Forms.Button OutputPathResetBtn;
+        private System.Windows.Forms.Label OutputSameAsInputLabel;
     }
 }
 
