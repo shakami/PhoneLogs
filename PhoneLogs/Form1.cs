@@ -31,16 +31,26 @@ namespace PhoneLogs
             OpenPDFBtn.Enabled = false;
             OpenFolderBtn.Enabled = false;
 
+            GenerateLog();
+
+            ResultLabel.Text = "Sucess!";
+            OpenPDFBtn.Enabled = true;
+            OpenFolderBtn.Enabled = true;
+        }
+
+        private void GenerateLog()
+        {
+            string inputPath = InputFilePathLabel.Text;
             string outputPath = GetOutputPath();
 
             var pdfPath = outputPath + ".pdf";
             var csvPath = outputPath + ".csv";
-            
+
             var sheetToProcess = Properties.Settings.Default.Sheet;
 
-            var excelApp = new ExcelToCSVService(InputFilePathLabel.Text, sheetToProcess);
-
+            var excelApp = new ExcelToCSVService(inputPath, sheetToProcess);
             excelApp.GetOutput(csvPath);
+
             var columns = Properties.AdvancedSettings.Default;
             var csvToCallService = new CSVToCallsService(columns.SessionIDColumn,
                                                          columns.FromNameColumn,
@@ -63,10 +73,6 @@ namespace PhoneLogs
 
             var pdfService = new PDFService(pdfPath);
             pdfService.GenerateOutput(processedCalls);
-
-            ResultLabel.Text = "Sucess!";
-            OpenPDFBtn.Enabled = true;
-            OpenFolderBtn.Enabled = true;
         }
 
         private string GetOutputPath()
