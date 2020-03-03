@@ -70,7 +70,11 @@ namespace PhoneLogs
 
                 calls.Add(call);
             }
+
+            sr.Close();
+
             return calls;
+
         }
     }
 }

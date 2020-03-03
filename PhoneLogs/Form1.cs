@@ -31,15 +31,21 @@ namespace PhoneLogs
             {
                 InputFilePathLabel.Text = OpenFileDialog.FileName;
                 ResultLabel.Text = "";
+                ProcessBtn.Enabled = true;
             }
 
         }
 
         private void ProcessBtn_Click(object sender, EventArgs e)
         {
+            ResultLabel.Text = "working...";
+            OpenPDFBtn.Enabled = false;
+            OpenFolderBtn.Enabled = false;
+
+
             var inputPath = InputFilePathLabel.Text;
 
-            if (String.IsNullOrWhiteSpace(inputPath))
+            if (string.IsNullOrWhiteSpace(inputPath))
             {
                 ResultLabel.Text = "Please Select A File First!";
                 return;
@@ -57,7 +63,9 @@ namespace PhoneLogs
             int _direction_column = 10;
             int _queue_column = 11;
 
-            var excelApp = new ExcelToCSVService(InputFilePathLabel.Text, 2);
+            var sheetToProcess = Properties.Settings.Default.Sheet;
+
+            var excelApp = new ExcelToCSVService(InputFilePathLabel.Text, sheetToProcess);
 
             var csvPath = inputPath + ".csv";
 
@@ -79,22 +87,27 @@ namespace PhoneLogs
 
             var callProcessing = new CallProcessingService(calls);
 
-            var parsedCalls = callProcessing.GetCallsPerPerson(new List<string>()
-            {
-                "Araceli Ornelas",
-                "Benita Lucero",
-                "Freddy Shamoon",
-                "Janice Romo",
-                "Jenny Herrera",
-                "Kevin Herrera",
-                "Phillip Yadidian",
-                "Vanessa Vargas"
-            });
+            //var parsedCalls = callProcessing.GetCallsPerPerson(new List<string>()
+            //{
+            //    "Araceli Ornelas",
+            //    "Benita Lucero",
+            //    "Freddy Shamoon",
+            //    "Janice Romo",
+            //    "Jenny Herrera",
+            //    "Kevin Herrera",
+            //    "Phillip Yadidian",
+            //    "Vanessa Vargas"
+            //});
 
-            FileInfo file = new FileInfo("test.pdf");
+            var employees = Properties.Settings.Default.Employees.Cast<String>().ToList();
+            var parsedCalls = callProcessing.GetCallsPerPerson(employees);
+            
+            var pdfPath = Properties.Settings.Default.OutputFoler + "test.pdf";
+
+            FileInfo file = new FileInfo(pdfPath);
             file.Directory.Create();
 
-            PdfDocument pdfDoc = new PdfDocument(new PdfWriter("test.pdf"));
+            PdfDocument pdfDoc = new PdfDocument(new PdfWriter(pdfPath));
             Document doc = new Document(pdfDoc, PageSize.LETTER.Rotate());
             // doc.SetMargins(0, 0, 0, 0);
 
@@ -114,8 +127,8 @@ namespace PhoneLogs
                 var cell = new Cell(1, 8).Add(new Paragraph
                     (
                         employee.Key + " - " +
-                        employee.Value.GetStats().TotalCalls + " Calls" + " - " +
-                        "Duration: " + employee.Value.GetStats().Duration
+                        employee.Value.Stats.TotalCalls + " Call(s)" + " - " +
+                        "Duration: " + employee.Value.Stats.Duration
                     ));
                 cell.SetTextAlignment(TextAlignment.CENTER);
                 cell.SetPadding(5);
@@ -146,7 +159,7 @@ namespace PhoneLogs
             doc.Add(table);
 
             doc.Close();
-
+            
 
             // StreamWriter sw = new StreamWriter("data.txt");
 
@@ -180,6 +193,8 @@ namespace PhoneLogs
             //sw.Close();
 
             ResultLabel.Text = "Sucess!";
+            OpenPDFBtn.Enabled = true;
+            OpenFolderBtn.Enabled = true;
         }
 
         private void AddCall(Table table, Call call, bool callsMade)
@@ -192,7 +207,8 @@ namespace PhoneLogs
 
                 cell = new Cell().Add(new Paragraph().SetFontSize(8).Add(call.ToNumber));
                 table.AddCell(cell);
-            } else
+            }
+            else
             {
                 cell = new Cell().Add(new Paragraph().SetFontSize(10).Add(call.FromName));
                 //table.AddCell(call.FromName);
@@ -240,16 +256,17 @@ namespace PhoneLogs
             {
                 cell = new Cell(1, 2).Add(new Paragraph("To"));
                 table.AddCell(cell);
-            } else
+            }
+            else
             {
                 cell = new Cell(1, 2).Add(new Paragraph("From"));
                 table.AddCell(cell);
             }
-            
+
             // table.AddCell("From Number");
             // table.AddCell("To Name");
             // table.AddCell("To Number");
-            
+
             table.AddCell("Result");
             table.AddCell("Call Length");
             table.AddCell("Handle Time");
@@ -260,10 +277,65 @@ namespace PhoneLogs
 
         private void ModifyOutputFolderBtn_Click(object sender, EventArgs e)
         {
-            if(FolderBrowserDialog.ShowDialog() == DialogResult.OK)
+            if (FolderBrowserDialog.ShowDialog() == DialogResult.OK)
             {
                 OutputFolderLabel.Text = FolderBrowserDialog.SelectedPath;
             }
+        }
+
+        private void OpenPDFBtn_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("test.pdf");
+        }
+
+        private void OpenFolderBtn_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start(@"C:\");
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            ResultLabel.Text = Properties.Settings.Default.Sheet.ToString();
+        }
+
+        private void SettingsTab_Enter(object sender, EventArgs e)
+        {
+            SheetNumberPicker.Value = Properties.Settings.Default.Sheet;
+            var employees = new List<string>();
+            if (Properties.Settings.Default.Employees != null)
+            {
+                foreach (var employee in Properties.Settings.Default.Employees)
+                {
+                    employees.Add(employee);
+                }
+                EmployeesFilterBox.Text = string.Join(",", employees);
+            }
+            else
+            {
+                EmployeesFilterBox.Text = "";
+            }
+        }
+
+        private void SaveSettingsBtn_Click(object sender, EventArgs e)
+        {
+
+            if (!String.IsNullOrWhiteSpace(EmployeesFilterBox.Text))
+            {
+                var employees = EmployeesFilterBox.Text.Split(',');
+                if (Properties.Settings.Default.Employees == null)
+                {
+                    Properties.Settings.Default.Employees = new System.Collections.Specialized.StringCollection();
+                }
+                Properties.Settings.Default.Employees.Clear();
+                foreach (var employee in employees)
+                {
+                    Properties.Settings.Default.Employees.Add(employee.Trim());
+                }
+            } else
+            {
+                Properties.Settings.Default.Employees = new System.Collections.Specialized.StringCollection();
+            }
+            Properties.Settings.Default.Save();
         }
     }
 }

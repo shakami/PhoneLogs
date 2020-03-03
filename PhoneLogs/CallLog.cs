@@ -7,8 +7,9 @@ namespace PhoneLogs
     {
         public List<Call> CallsFrom { get; set; } = new List<Call>();
         public List<Call> CallsTo { get; set; } = new List<Call>();
+        public CallStats Stats { get { return GetStats(); } }
 
-        public CallStats GetStats()
+        private CallStats GetStats()
         {
             int totalCalls = 0;
             TimeSpan duration = TimeSpan.Zero;
