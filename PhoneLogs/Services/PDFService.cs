@@ -17,7 +17,7 @@ namespace PhoneLogs
     public class PDFService
     {
         private readonly Document _doc;
-        private const int NUM_COLUMNS = 8;
+        private const int NUM_COLUMNS = 9;
         private const float DIV_MARGIN = 25;
         private readonly DeviceRgb HEADING_COLOR = new DeviceRgb(68, 111, 111);
         private readonly DeviceRgb GREY_BACKGROUND = new DeviceRgb(160, 160, 160);
@@ -146,7 +146,8 @@ namespace PhoneLogs
             table.AddCell(GetCell(call.HandleTime, striped));
 
             table.AddCell(GetCell(call.CallQueue, striped));
-
+            
+            table.AddCell(GetCell(call.SessionId, striped));
         }
 
         private void AddHeaders(Table table, bool callsMade)
@@ -172,6 +173,8 @@ namespace PhoneLogs
             table.AddCell(cell.Clone(false).Add(new Paragraph("Call Direction")));
             table.AddCell(cell.Clone(false).Add(new Paragraph("Handle Time")));
             table.AddCell(cell.Clone(false).Add(new Paragraph("Queue")));
+
+            table.AddCell(cell.Clone(false).Add(new Paragraph("Call ID")));
         }
 
     }

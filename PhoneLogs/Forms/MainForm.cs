@@ -103,6 +103,8 @@ namespace PhoneLogs
 
             Properties.Settings.Default.OutputFoler = OutputFolderLabel.Text;
 
+            Properties.Settings.Default.Sheet = (int)SheetNumberPicker.Value;
+
             Properties.Settings.Default.Save();
 
             OpenPDFBtn.Enabled = false;
