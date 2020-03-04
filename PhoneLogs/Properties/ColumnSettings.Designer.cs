@@ -13,11 +13,11 @@ namespace PhoneLogs.Properties {
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.4.0.0")]
-    internal sealed partial class AdvancedSettings : global::System.Configuration.ApplicationSettingsBase {
+    internal sealed partial class ColumnSettings : global::System.Configuration.ApplicationSettingsBase {
         
-        private static AdvancedSettings defaultInstance = ((AdvancedSettings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new AdvancedSettings())));
+        private static ColumnSettings defaultInstance = ((ColumnSettings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new ColumnSettings())));
         
-        public static AdvancedSettings Default {
+        public static ColumnSettings Default {
             get {
                 return defaultInstance;
             }
@@ -152,6 +152,53 @@ namespace PhoneLogs.Properties {
             }
             set {
                 this["CallQueueColumn"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("2")]
+        public int Sheet {
+            get {
+                return ((int)(this["Sheet"]));
+            }
+            set {
+                this["Sheet"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::System.Collections.Specialized.StringCollection Employees {
+            get {
+                return ((global::System.Collections.Specialized.StringCollection)(this["Employees"]));
+            }
+            set {
+                this["Employees"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string OutputFolder {
+            get {
+                return ((string)(this["OutputFolder"]));
+            }
+            set {
+                this["OutputFolder"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string OutputFileName {
+            get {
+                return ((string)(this["OutputFileName"]));
+            }
+            set {
+                this["OutputFileName"] = value;
             }
         }
     }

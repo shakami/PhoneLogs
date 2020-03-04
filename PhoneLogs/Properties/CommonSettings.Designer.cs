@@ -13,11 +13,11 @@ namespace PhoneLogs.Properties {
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.4.0.0")]
-    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
+    internal sealed partial class CommonSettings : global::System.Configuration.ApplicationSettingsBase {
         
-        private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
+        private static CommonSettings defaultInstance = ((CommonSettings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new CommonSettings())));
         
-        public static Settings Default {
+        public static CommonSettings Default {
             get {
                 return defaultInstance;
             }
@@ -49,12 +49,24 @@ namespace PhoneLogs.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string OutputFoler {
+        public string OutputFolder {
             get {
-                return ((string)(this["OutputFoler"]));
+                return ((string)(this["OutputFolder"]));
             }
             set {
-                this["OutputFoler"] = value;
+                this["OutputFolder"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string OutputFileName {
+            get {
+                return ((string)(this["OutputFileName"]));
+            }
+            set {
+                this["OutputFileName"] = value;
             }
         }
     }
