@@ -16,7 +16,7 @@ namespace PhoneLogs
                     string callResult,
                     string callLength,
                     string handleTime,
-                    string startTime,
+                    DateTime startTime,
                     string callDirection,
                     string callQueue)
         {
@@ -28,7 +28,7 @@ namespace PhoneLogs
             CallResult = callResult ?? throw new ArgumentNullException(nameof(callResult));
             CallLength = callLength ?? throw new ArgumentNullException(nameof(callLength));
             HandleTime = handleTime ?? throw new ArgumentNullException(nameof(handleTime));
-            StartTime = startTime ?? throw new ArgumentNullException(nameof(startTime));
+            StartTime = startTime;
             CallDirection = callDirection ?? throw new ArgumentNullException(nameof(callDirection));
             CallQueue = callQueue ?? throw new ArgumentNullException(nameof(callQueue));
         }
@@ -41,7 +41,7 @@ namespace PhoneLogs
         public string CallResult { get; }
         public string CallLength { get; }
         public string HandleTime { get; }
-        public string StartTime { get; }
+        public DateTime StartTime { get; }
         public string CallDirection { get; }
         public string CallQueue { get; }
 

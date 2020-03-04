@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Linq;
+using System.Collections.Specialized;
 using System.Windows.Forms;
 
 namespace PhoneLogs
@@ -22,121 +21,40 @@ namespace PhoneLogs
                 ResultLabel.Text = "";
                 ProcessBtn.Enabled = true;
             }
-
         }
 
         private void ProcessBtn_Click(object sender, EventArgs e)
         {
-            ResultLabel.Text = "working...";
+            ResultLabel.Text = "Working...";
             OpenPDFBtn.Enabled = false;
             OpenFolderBtn.Enabled = false;
 
-            GenerateLog();
+            Utility.GenerateLog(InputFilePathLabel.Text);
 
-            ResultLabel.Text = "Sucess!";
+            ResultLabel.Text = "Done!";
             OpenPDFBtn.Enabled = true;
             OpenFolderBtn.Enabled = true;
-        }
-
-        private void GenerateLog()
-        {
-            string inputPath = InputFilePathLabel.Text;
-            string outputPath = GetOutputPath();
-
-            var pdfPath = outputPath + ".pdf";
-            var csvPath = outputPath + ".csv";
-
-            var sheetToProcess = Properties.Settings.Default.Sheet;
-
-            var excelApp = new ExcelToCSVService(inputPath, sheetToProcess);
-            excelApp.GetOutput(csvPath);
-
-            var columns = Properties.AdvancedSettings.Default;
-            var csvToCallService = new CSVToCallsService(columns.SessionIDColumn,
-                                                         columns.FromNameColumn,
-                                                         columns.FromNumberColumn,
-                                                         columns.ToNameColumn,
-                                                         columns.ToNumberColumn,
-                                                         columns.CallResultColumn,
-                                                         columns.CallLengthColumn,
-                                                         columns.HandleTimeColumn,
-                                                         columns.StartTimeColumn,
-                                                         columns.CallDirectionColumn,
-                                                         columns.CallQueueColumn);
-
-            var calls = csvToCallService.ParseCSV(csvPath);
-
-            var callProcessing = new CallProcessingService(calls);
-
-            var employees = Properties.Settings.Default.Employees.Cast<String>().ToList();
-            var processedCalls = callProcessing.GetCallsPerPerson(employees);
-
-            var pdfService = new PDFService(pdfPath);
-            pdfService.GenerateOutput(processedCalls);
-        }
-
-        private string GetOutputPath()
-        {
-            var inputPath = InputFilePathLabel.Text;
-            var outputFolder = Properties.Settings.Default.OutputFoler;
-            string outputPath;
-
-            if (string.IsNullOrWhiteSpace(outputFolder))
-            {
-                outputPath = GetFilePathNoExtension(inputPath);
-            }
-            else
-            {
-                outputPath = outputFolder + "\\" + GetFileNameNoExtension(inputPath);
-            }
-
-            return outputPath;
         }
 
         private void ModifyOutputFolderBtn_Click(object sender, EventArgs e)
         {
             if (FolderBrowserDialog.ShowDialog() == DialogResult.OK)
             {
-                OutputSameAsInputLabel.Visible = false;
+                OutputSameAsInputRadio.Checked = false;
                 OutputFolderLabel.Text = FolderBrowserDialog.SelectedPath;
             }
         }
 
         private void OpenPDFBtn_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start(GetOutputPath() + ".pdf");
-        }
-
-        private string GetFilePathNoExtension(string fullPath)
-        {
-            return fullPath.Substring(0, fullPath.LastIndexOf('.'));
-        }
-
-        private string GetFileNameNoExtension(string fullPath)
-        {
-            int slashIndex = fullPath.LastIndexOf('\\');
-            string fileName = fullPath.Substring(slashIndex + 1, fullPath.Length - slashIndex - 1);
-            var result = fileName.Substring(0, fileName.LastIndexOf('.'));
-            return result;
-        }
-
-        private string GetOutputFolder()
-        {
-            var outputFolder = Properties.Settings.Default.OutputFoler;
-
-            if (string.IsNullOrWhiteSpace(outputFolder))
-            {
-                var inputPath = InputFilePathLabel.Text;
-                var slashIndex = inputPath.LastIndexOf('\\');
-                outputFolder = inputPath.Substring(0, slashIndex);
-            }
-
-            return outputFolder;
+            System.Diagnostics.Process.Start(
+                Utility.GetOutputPath(InputFilePathLabel.Text) + ".pdf");
         }
 
         private void OpenFolderBtn_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start(GetOutputFolder());
+            System.Diagnostics.Process.Start(
+                Utility.GetOutputFolder(InputFilePathLabel.Text));
         }
 
         private void SettingsTab_Enter(object sender, EventArgs e)
@@ -144,10 +62,7 @@ namespace PhoneLogs
             SheetNumberPicker.Value = Properties.Settings.Default.Sheet;
 
             var outputFolder = Properties.Settings.Default.OutputFoler;
-            if (string.IsNullOrWhiteSpace(outputFolder))
-            {
-                OutputSameAsInputLabel.Visible = true;
-            }
+            OutputSameAsInputRadio.Checked = string.IsNullOrWhiteSpace(outputFolder);
             OutputFolderLabel.Text = outputFolder;
 
             var employees = new List<string>();
@@ -173,7 +88,7 @@ namespace PhoneLogs
                 var employees = EmployeesFilterBox.Text.Split(',');
                 if (Properties.Settings.Default.Employees == null)
                 {
-                    Properties.Settings.Default.Employees = new System.Collections.Specialized.StringCollection();
+                    Properties.Settings.Default.Employees = new StringCollection();
                 }
                 Properties.Settings.Default.Employees.Clear();
                 foreach (var employee in employees)
@@ -183,7 +98,7 @@ namespace PhoneLogs
             }
             else
             {
-                Properties.Settings.Default.Employees = new System.Collections.Specialized.StringCollection();
+                Properties.Settings.Default.Employees = new StringCollection();
             }
 
             Properties.Settings.Default.OutputFoler = OutputFolderLabel.Text;
@@ -192,18 +107,22 @@ namespace PhoneLogs
 
             OpenPDFBtn.Enabled = false;
             OpenFolderBtn.Enabled = false;
+            ResultLabel.Text = "";
         }
 
-        private void OutputPathResetBtn_Click(object sender, EventArgs e)
+        private void OutpuSameAsInputRadio_CheckedChanged(object sender, EventArgs e)
         {
-            OutputFolderLabel.Text = "";
-            OutputSameAsInputLabel.Visible = true;
+            if (OutputSameAsInputRadio.Checked)
+            {
+                OutputFolderLabel.Text = "";
+                OutputSameAsInputRadio.Checked = true;
+            }
+
         }
 
         private void AdvancedSettingsBtn_Click(object sender, EventArgs e)
         {
-            AdvancedSettings advancedSettings = new AdvancedSettings();
-            advancedSettings.ShowDialog();
+            new AdvancedSettings().ShowDialog();
         }
     }
 }

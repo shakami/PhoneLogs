@@ -36,12 +36,12 @@ namespace PhoneLogs
             _calls
                 .Where(c => logs.Keys.Contains(c.FromName, StringComparer.OrdinalIgnoreCase))
                 .GroupBy(c => c.FromName)
-                .Select(group => logs[group.Key].CallsFrom = group.ToList()).ToList();
+                .Select(group => logs[group.Key].CallsFrom = group.OrderBy(c => c.StartTime).ToList()).ToList();
 
             _calls
                 .Where(c => logs.Keys.Contains(c.ToName, StringComparer.OrdinalIgnoreCase))
                 .GroupBy(c => c.ToName)
-                .Select(group => logs[group.Key].CallsTo = group.ToList()).ToList();
+                .Select(group => logs[group.Key].CallsTo = group.OrderBy(c => c.StartTime).ToList()).ToList();
 
             var result = logs.OrderByDescending(x => x.Value.Stats.TotalCalls).ToDictionary(x => x.Key, x => x.Value);
 

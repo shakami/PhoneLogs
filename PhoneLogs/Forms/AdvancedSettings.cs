@@ -27,11 +27,6 @@ namespace PhoneLogs
             CallQueueCol.Value = settings.CallQueueColumn;
         }
 
-        private void CancelBtn_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
         private void ResetBtn_Click(object sender, EventArgs e)
         {
             var resetConfirmed = MessageBox.Show(

@@ -38,8 +38,9 @@
             this.OpenFolderBtn = new System.Windows.Forms.Button();
             this.OpenPDFBtn = new System.Windows.Forms.Button();
             this.SettingsTab = new System.Windows.Forms.TabPage();
-            this.OutputSameAsInputLabel = new System.Windows.Forms.Label();
-            this.OutputPathResetBtn = new System.Windows.Forms.Button();
+            this.OutputSameAsInputRadio = new System.Windows.Forms.RadioButton();
+            this.label4 = new System.Windows.Forms.Label();
+            this.AdvancedSettingsBtn = new System.Windows.Forms.Button();
             this.OutputFolderLabel = new System.Windows.Forms.Label();
             this.EmployeesFilterBox = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -49,7 +50,6 @@
             this.SheetNumberPicker = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
             this.FolderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
-            this.AdvancedSettingsBtn = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.SettingsTab.SuspendLayout();
@@ -72,7 +72,7 @@
             this.ProcessBtn.Location = new System.Drawing.Point(6, 104);
             this.ProcessBtn.Name = "ProcessBtn";
             this.ProcessBtn.Size = new System.Drawing.Size(100, 23);
-            this.ProcessBtn.TabIndex = 2;
+            this.ProcessBtn.TabIndex = 1;
             this.ProcessBtn.Text = "Process";
             this.ProcessBtn.UseVisualStyleBackColor = true;
             this.ProcessBtn.Click += new System.EventHandler(this.ProcessBtn_Click);
@@ -130,7 +130,7 @@
             this.OpenFolderBtn.Location = new System.Drawing.Point(3, 186);
             this.OpenFolderBtn.Name = "OpenFolderBtn";
             this.OpenFolderBtn.Size = new System.Drawing.Size(420, 23);
-            this.OpenFolderBtn.TabIndex = 7;
+            this.OpenFolderBtn.TabIndex = 2;
             this.OpenFolderBtn.Text = "Open Output Folder";
             this.OpenFolderBtn.UseVisualStyleBackColor = true;
             this.OpenFolderBtn.Click += new System.EventHandler(this.OpenFolderBtn_Click);
@@ -142,16 +142,16 @@
             this.OpenPDFBtn.Location = new System.Drawing.Point(3, 209);
             this.OpenPDFBtn.Name = "OpenPDFBtn";
             this.OpenPDFBtn.Size = new System.Drawing.Size(420, 23);
-            this.OpenPDFBtn.TabIndex = 6;
+            this.OpenPDFBtn.TabIndex = 3;
             this.OpenPDFBtn.Text = "Open PDF";
             this.OpenPDFBtn.UseVisualStyleBackColor = true;
             this.OpenPDFBtn.Click += new System.EventHandler(this.OpenPDFBtn_Click);
             // 
             // SettingsTab
             // 
+            this.SettingsTab.Controls.Add(this.OutputSameAsInputRadio);
+            this.SettingsTab.Controls.Add(this.label4);
             this.SettingsTab.Controls.Add(this.AdvancedSettingsBtn);
-            this.SettingsTab.Controls.Add(this.OutputSameAsInputLabel);
-            this.SettingsTab.Controls.Add(this.OutputPathResetBtn);
             this.SettingsTab.Controls.Add(this.OutputFolderLabel);
             this.SettingsTab.Controls.Add(this.EmployeesFilterBox);
             this.SettingsTab.Controls.Add(this.label3);
@@ -169,26 +169,36 @@
             this.SettingsTab.UseVisualStyleBackColor = true;
             this.SettingsTab.Enter += new System.EventHandler(this.SettingsTab_Enter);
             // 
-            // OutputSameAsInputLabel
+            // OutputSameAsInputRadio
             // 
-            this.OutputSameAsInputLabel.AutoSize = true;
-            this.OutputSameAsInputLabel.Location = new System.Drawing.Point(86, 35);
-            this.OutputSameAsInputLabel.Name = "OutputSameAsInputLabel";
-            this.OutputSameAsInputLabel.Size = new System.Drawing.Size(107, 13);
-            this.OutputSameAsInputLabel.TabIndex = 10;
-            this.OutputSameAsInputLabel.Text = "Same as Input Folder";
-            this.OutputSameAsInputLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.OutputSameAsInputLabel.Visible = false;
+            this.OutputSameAsInputRadio.AutoSize = true;
+            this.OutputSameAsInputRadio.Location = new System.Drawing.Point(88, 33);
+            this.OutputSameAsInputRadio.Name = "OutputSameAsInputRadio";
+            this.OutputSameAsInputRadio.Size = new System.Drawing.Size(125, 17);
+            this.OutputSameAsInputRadio.TabIndex = 12;
+            this.OutputSameAsInputRadio.TabStop = true;
+            this.OutputSameAsInputRadio.Text = "Same as Input Folder";
+            this.OutputSameAsInputRadio.UseVisualStyleBackColor = true;
+            this.OutputSameAsInputRadio.CheckedChanged += new System.EventHandler(this.OutpuSameAsInputRadio_CheckedChanged);
             // 
-            // OutputPathResetBtn
+            // label4
             // 
-            this.OutputPathResetBtn.Location = new System.Drawing.Point(348, 48);
-            this.OutputPathResetBtn.Name = "OutputPathResetBtn";
-            this.OutputPathResetBtn.Size = new System.Drawing.Size(75, 23);
-            this.OutputPathResetBtn.TabIndex = 9;
-            this.OutputPathResetBtn.Text = "Reset";
-            this.OutputPathResetBtn.UseVisualStyleBackColor = true;
-            this.OutputPathResetBtn.Click += new System.EventHandler(this.OutputPathResetBtn_Click);
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(135, 8);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(66, 13);
+            this.label4.TabIndex = 11;
+            this.label4.Text = "(Default is 2)";
+            // 
+            // AdvancedSettingsBtn
+            // 
+            this.AdvancedSettingsBtn.Location = new System.Drawing.Point(6, 204);
+            this.AdvancedSettingsBtn.Name = "AdvancedSettingsBtn";
+            this.AdvancedSettingsBtn.Size = new System.Drawing.Size(75, 23);
+            this.AdvancedSettingsBtn.TabIndex = 4;
+            this.AdvancedSettingsBtn.Text = "Advanced";
+            this.AdvancedSettingsBtn.UseVisualStyleBackColor = true;
+            this.AdvancedSettingsBtn.Click += new System.EventHandler(this.AdvancedSettingsBtn_Click);
             // 
             // OutputFolderLabel
             // 
@@ -204,7 +214,7 @@
             this.EmployeesFilterBox.Multiline = true;
             this.EmployeesFilterBox.Name = "EmployeesFilterBox";
             this.EmployeesFilterBox.Size = new System.Drawing.Size(390, 99);
-            this.EmployeesFilterBox.TabIndex = 7;
+            this.EmployeesFilterBox.TabIndex = 3;
             // 
             // label3
             // 
@@ -217,10 +227,10 @@
             // 
             // ModifyOutputFolderBtn
             // 
-            this.ModifyOutputFolderBtn.Location = new System.Drawing.Point(267, 48);
+            this.ModifyOutputFolderBtn.Location = new System.Drawing.Point(348, 48);
             this.ModifyOutputFolderBtn.Name = "ModifyOutputFolderBtn";
             this.ModifyOutputFolderBtn.Size = new System.Drawing.Size(75, 23);
-            this.ModifyOutputFolderBtn.TabIndex = 5;
+            this.ModifyOutputFolderBtn.TabIndex = 1;
             this.ModifyOutputFolderBtn.Text = "Modify";
             this.ModifyOutputFolderBtn.UseVisualStyleBackColor = true;
             this.ModifyOutputFolderBtn.Click += new System.EventHandler(this.ModifyOutputFolderBtn_Click);
@@ -239,7 +249,7 @@
             this.SaveSettingsBtn.Location = new System.Drawing.Point(345, 204);
             this.SaveSettingsBtn.Name = "SaveSettingsBtn";
             this.SaveSettingsBtn.Size = new System.Drawing.Size(75, 23);
-            this.SaveSettingsBtn.TabIndex = 2;
+            this.SaveSettingsBtn.TabIndex = 5;
             this.SaveSettingsBtn.Text = "Save";
             this.SaveSettingsBtn.UseVisualStyleBackColor = true;
             this.SaveSettingsBtn.Click += new System.EventHandler(this.SaveSettingsBtn_Click);
@@ -249,7 +259,7 @@
             this.SheetNumberPicker.Location = new System.Drawing.Point(89, 6);
             this.SheetNumberPicker.Name = "SheetNumberPicker";
             this.SheetNumberPicker.Size = new System.Drawing.Size(40, 20);
-            this.SheetNumberPicker.TabIndex = 1;
+            this.SheetNumberPicker.TabIndex = 0;
             // 
             // label1
             // 
@@ -260,22 +270,13 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Sheet Number:";
             // 
-            // AdvancedSettingsBtn
-            // 
-            this.AdvancedSettingsBtn.Location = new System.Drawing.Point(6, 204);
-            this.AdvancedSettingsBtn.Name = "AdvancedSettingsBtn";
-            this.AdvancedSettingsBtn.Size = new System.Drawing.Size(75, 23);
-            this.AdvancedSettingsBtn.TabIndex = 11;
-            this.AdvancedSettingsBtn.Text = "Advanced";
-            this.AdvancedSettingsBtn.UseVisualStyleBackColor = true;
-            this.AdvancedSettingsBtn.Click += new System.EventHandler(this.AdvancedSettingsBtn_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(434, 261);
             this.Controls.Add(this.tabControl1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Name = "MainForm";
             this.Text = "Phone Logs";
             this.tabControl1.ResumeLayout(false);
@@ -308,9 +309,9 @@
         private System.Windows.Forms.Label OutputFolderLabel;
         private System.Windows.Forms.Button OpenPDFBtn;
         private System.Windows.Forms.Button OpenFolderBtn;
-        private System.Windows.Forms.Button OutputPathResetBtn;
-        private System.Windows.Forms.Label OutputSameAsInputLabel;
         private System.Windows.Forms.Button AdvancedSettingsBtn;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.RadioButton OutputSameAsInputRadio;
     }
 }
 

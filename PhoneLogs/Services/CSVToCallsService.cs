@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 
 namespace PhoneLogs
@@ -64,7 +65,7 @@ namespace PhoneLogs
                                     values[_call_result_index],
                                     values[_call_length_index],
                                     values[_handle_time_index],
-                                    values[_start_time_index],
+                                    DateTime.Parse(values[_start_time_index]),
                                     values[_call_direction_index],
                                     values[_call_queue_index]);
 

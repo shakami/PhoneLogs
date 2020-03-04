@@ -28,45 +28,48 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
-            this.label19 = new System.Windows.Forms.Label();
-            this.label21 = new System.Windows.Forms.Label();
-            this.SessionIDCol = new System.Windows.Forms.NumericUpDown();
-            this.FromNameCol = new System.Windows.Forms.NumericUpDown();
-            this.FromNumberCol = new System.Windows.Forms.NumericUpDown();
-            this.ToNameCol = new System.Windows.Forms.NumericUpDown();
-            this.ToNumberCol = new System.Windows.Forms.NumericUpDown();
-            this.CallResultCol = new System.Windows.Forms.NumericUpDown();
-            this.CallLengthCol = new System.Windows.Forms.NumericUpDown();
-            this.HandleTimeCol = new System.Windows.Forms.NumericUpDown();
-            this.StartTimeCol = new System.Windows.Forms.NumericUpDown();
-            this.CallDirectionCol = new System.Windows.Forms.NumericUpDown();
             this.CallQueueCol = new System.Windows.Forms.NumericUpDown();
+            this.CallDirectionCol = new System.Windows.Forms.NumericUpDown();
+            this.StartTimeCol = new System.Windows.Forms.NumericUpDown();
+            this.HandleTimeCol = new System.Windows.Forms.NumericUpDown();
+            this.CallLengthCol = new System.Windows.Forms.NumericUpDown();
+            this.CallResultCol = new System.Windows.Forms.NumericUpDown();
+            this.ToNumberCol = new System.Windows.Forms.NumericUpDown();
+            this.ToNameCol = new System.Windows.Forms.NumericUpDown();
+            this.FromNumberCol = new System.Windows.Forms.NumericUpDown();
+            this.FromNameCol = new System.Windows.Forms.NumericUpDown();
+            this.label21 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.SessionIDCol = new System.Windows.Forms.NumericUpDown();
             this.SaveBtn = new System.Windows.Forms.Button();
             this.ResetBtn = new System.Windows.Forms.Button();
             this.CancelBtn = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
+            this.advancedSettingsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tableLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.SessionIDCol)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.FromNameCol)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.FromNumberCol)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ToNameCol)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ToNumberCol)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.CallResultCol)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.CallLengthCol)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.HandleTimeCol)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.StartTimeCol)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.CallDirectionCol)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CallQueueCol)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CallDirectionCol)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.StartTimeCol)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.HandleTimeCol)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CallLengthCol)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CallResultCol)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ToNumberCol)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ToNameCol)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.FromNumberCol)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.FromNameCol)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SessionIDCol)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.advancedSettingsBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -114,115 +117,85 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(200, 298);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
-            // label1
+            // CallQueueCol
             // 
-            this.label1.AutoSize = true;
-            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.Location = new System.Drawing.Point(4, 1);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(141, 26);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Session ID Column";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.CallQueueCol.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.CallQueueCol.Location = new System.Drawing.Point(152, 274);
+            this.CallQueueCol.Name = "CallQueueCol";
+            this.CallQueueCol.Size = new System.Drawing.Size(44, 20);
+            this.CallQueueCol.TabIndex = 31;
             // 
-            // label3
+            // CallDirectionCol
             // 
-            this.label3.AutoSize = true;
-            this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label3.Location = new System.Drawing.Point(4, 28);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(141, 26);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "From Name Column";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.CallDirectionCol.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.CallDirectionCol.Location = new System.Drawing.Point(152, 247);
+            this.CallDirectionCol.Name = "CallDirectionCol";
+            this.CallDirectionCol.Size = new System.Drawing.Size(44, 20);
+            this.CallDirectionCol.TabIndex = 30;
             // 
-            // label5
+            // StartTimeCol
             // 
-            this.label5.AutoSize = true;
-            this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label5.Location = new System.Drawing.Point(4, 55);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(141, 26);
-            this.label5.TabIndex = 4;
-            this.label5.Text = "From Number Column";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.StartTimeCol.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.StartTimeCol.Location = new System.Drawing.Point(152, 220);
+            this.StartTimeCol.Name = "StartTimeCol";
+            this.StartTimeCol.Size = new System.Drawing.Size(44, 20);
+            this.StartTimeCol.TabIndex = 29;
             // 
-            // label7
+            // HandleTimeCol
             // 
-            this.label7.AutoSize = true;
-            this.label7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label7.Location = new System.Drawing.Point(4, 82);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(141, 26);
-            this.label7.TabIndex = 6;
-            this.label7.Text = "To Name Column";
-            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.HandleTimeCol.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.HandleTimeCol.Location = new System.Drawing.Point(152, 193);
+            this.HandleTimeCol.Name = "HandleTimeCol";
+            this.HandleTimeCol.Size = new System.Drawing.Size(44, 20);
+            this.HandleTimeCol.TabIndex = 28;
             // 
-            // label9
+            // CallLengthCol
             // 
-            this.label9.AutoSize = true;
-            this.label9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label9.Location = new System.Drawing.Point(4, 109);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(141, 26);
-            this.label9.TabIndex = 8;
-            this.label9.Text = "To Number Column";
-            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.CallLengthCol.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.CallLengthCol.Location = new System.Drawing.Point(152, 166);
+            this.CallLengthCol.Name = "CallLengthCol";
+            this.CallLengthCol.Size = new System.Drawing.Size(44, 20);
+            this.CallLengthCol.TabIndex = 27;
             // 
-            // label11
+            // CallResultCol
             // 
-            this.label11.AutoSize = true;
-            this.label11.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label11.Location = new System.Drawing.Point(4, 136);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(141, 26);
-            this.label11.TabIndex = 10;
-            this.label11.Text = "Call Result Column";
-            this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.CallResultCol.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.CallResultCol.Location = new System.Drawing.Point(152, 139);
+            this.CallResultCol.Name = "CallResultCol";
+            this.CallResultCol.Size = new System.Drawing.Size(44, 20);
+            this.CallResultCol.TabIndex = 26;
             // 
-            // label13
+            // ToNumberCol
             // 
-            this.label13.AutoSize = true;
-            this.label13.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label13.Location = new System.Drawing.Point(4, 163);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(141, 26);
-            this.label13.TabIndex = 12;
-            this.label13.Text = "Call Length Column";
-            this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.ToNumberCol.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ToNumberCol.Location = new System.Drawing.Point(152, 112);
+            this.ToNumberCol.Name = "ToNumberCol";
+            this.ToNumberCol.Size = new System.Drawing.Size(44, 20);
+            this.ToNumberCol.TabIndex = 25;
             // 
-            // label15
+            // ToNameCol
             // 
-            this.label15.AutoSize = true;
-            this.label15.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label15.Location = new System.Drawing.Point(4, 190);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(141, 26);
-            this.label15.TabIndex = 14;
-            this.label15.Text = "Handle Time Column";
-            this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.ToNameCol.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ToNameCol.Location = new System.Drawing.Point(152, 85);
+            this.ToNameCol.Name = "ToNameCol";
+            this.ToNameCol.Size = new System.Drawing.Size(44, 20);
+            this.ToNameCol.TabIndex = 24;
             // 
-            // label17
+            // FromNumberCol
             // 
-            this.label17.AutoSize = true;
-            this.label17.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label17.Location = new System.Drawing.Point(4, 217);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(141, 26);
-            this.label17.TabIndex = 16;
-            this.label17.Text = "Start Time Column";
-            this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.FromNumberCol.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.FromNumberCol.Location = new System.Drawing.Point(152, 58);
+            this.FromNumberCol.Name = "FromNumberCol";
+            this.FromNumberCol.Size = new System.Drawing.Size(44, 20);
+            this.FromNumberCol.TabIndex = 23;
             // 
-            // label19
+            // FromNameCol
             // 
-            this.label19.AutoSize = true;
-            this.label19.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label19.Location = new System.Drawing.Point(4, 244);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(141, 26);
-            this.label19.TabIndex = 18;
-            this.label19.Text = "Call Direction Column";
-            this.label19.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.FromNameCol.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.FromNameCol.Location = new System.Drawing.Point(152, 31);
+            this.FromNameCol.Name = "FromNameCol";
+            this.FromNameCol.Size = new System.Drawing.Size(44, 20);
+            this.FromNameCol.TabIndex = 22;
             // 
             // label21
             // 
@@ -235,6 +208,116 @@
             this.label21.Text = "Call Queue Column";
             this.label21.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label19.Location = new System.Drawing.Point(4, 244);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(141, 26);
+            this.label19.TabIndex = 18;
+            this.label19.Text = "Call Direction Column";
+            this.label19.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label17.Location = new System.Drawing.Point(4, 217);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(141, 26);
+            this.label17.TabIndex = 16;
+            this.label17.Text = "Start Time Column";
+            this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label15.Location = new System.Drawing.Point(4, 190);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(141, 26);
+            this.label15.TabIndex = 14;
+            this.label15.Text = "Handle Time Column";
+            this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label13.Location = new System.Drawing.Point(4, 163);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(141, 26);
+            this.label13.TabIndex = 12;
+            this.label13.Text = "Call Length Column";
+            this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label11.Location = new System.Drawing.Point(4, 136);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(141, 26);
+            this.label11.TabIndex = 10;
+            this.label11.Text = "Call Result Column";
+            this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label9.Location = new System.Drawing.Point(4, 109);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(141, 26);
+            this.label9.TabIndex = 8;
+            this.label9.Text = "To Number Column";
+            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label7.Location = new System.Drawing.Point(4, 82);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(141, 26);
+            this.label7.TabIndex = 6;
+            this.label7.Text = "To Name Column";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label5.Location = new System.Drawing.Point(4, 55);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(141, 26);
+            this.label5.TabIndex = 4;
+            this.label5.Text = "From Number Column";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label3.Location = new System.Drawing.Point(4, 28);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(141, 26);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "From Name Column";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label1.Location = new System.Drawing.Point(4, 1);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(141, 26);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Session ID Column";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // SessionIDCol
             // 
             this.SessionIDCol.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -242,86 +325,6 @@
             this.SessionIDCol.Name = "SessionIDCol";
             this.SessionIDCol.Size = new System.Drawing.Size(44, 20);
             this.SessionIDCol.TabIndex = 21;
-            // 
-            // FromNameCol
-            // 
-            this.FromNameCol.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.FromNameCol.Location = new System.Drawing.Point(152, 31);
-            this.FromNameCol.Name = "FromNameCol";
-            this.FromNameCol.Size = new System.Drawing.Size(44, 20);
-            this.FromNameCol.TabIndex = 22;
-            // 
-            // FromNumberCol
-            // 
-            this.FromNumberCol.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.FromNumberCol.Location = new System.Drawing.Point(152, 58);
-            this.FromNumberCol.Name = "FromNumberCol";
-            this.FromNumberCol.Size = new System.Drawing.Size(44, 20);
-            this.FromNumberCol.TabIndex = 23;
-            // 
-            // ToNameCol
-            // 
-            this.ToNameCol.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ToNameCol.Location = new System.Drawing.Point(152, 85);
-            this.ToNameCol.Name = "ToNameCol";
-            this.ToNameCol.Size = new System.Drawing.Size(44, 20);
-            this.ToNameCol.TabIndex = 24;
-            // 
-            // ToNumberCol
-            // 
-            this.ToNumberCol.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ToNumberCol.Location = new System.Drawing.Point(152, 112);
-            this.ToNumberCol.Name = "ToNumberCol";
-            this.ToNumberCol.Size = new System.Drawing.Size(44, 20);
-            this.ToNumberCol.TabIndex = 25;
-            // 
-            // CallResultCol
-            // 
-            this.CallResultCol.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.CallResultCol.Location = new System.Drawing.Point(152, 139);
-            this.CallResultCol.Name = "CallResultCol";
-            this.CallResultCol.Size = new System.Drawing.Size(44, 20);
-            this.CallResultCol.TabIndex = 26;
-            // 
-            // CallLengthCol
-            // 
-            this.CallLengthCol.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.CallLengthCol.Location = new System.Drawing.Point(152, 166);
-            this.CallLengthCol.Name = "CallLengthCol";
-            this.CallLengthCol.Size = new System.Drawing.Size(44, 20);
-            this.CallLengthCol.TabIndex = 27;
-            // 
-            // HandleTimeCol
-            // 
-            this.HandleTimeCol.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.HandleTimeCol.Location = new System.Drawing.Point(152, 193);
-            this.HandleTimeCol.Name = "HandleTimeCol";
-            this.HandleTimeCol.Size = new System.Drawing.Size(44, 20);
-            this.HandleTimeCol.TabIndex = 28;
-            // 
-            // StartTimeCol
-            // 
-            this.StartTimeCol.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.StartTimeCol.Location = new System.Drawing.Point(152, 220);
-            this.StartTimeCol.Name = "StartTimeCol";
-            this.StartTimeCol.Size = new System.Drawing.Size(44, 20);
-            this.StartTimeCol.TabIndex = 29;
-            // 
-            // CallDirectionCol
-            // 
-            this.CallDirectionCol.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.CallDirectionCol.Location = new System.Drawing.Point(152, 247);
-            this.CallDirectionCol.Name = "CallDirectionCol";
-            this.CallDirectionCol.Size = new System.Drawing.Size(44, 20);
-            this.CallDirectionCol.TabIndex = 30;
-            // 
-            // CallQueueCol
-            // 
-            this.CallQueueCol.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.CallQueueCol.Location = new System.Drawing.Point(152, 274);
-            this.CallQueueCol.Name = "CallQueueCol";
-            this.CallQueueCol.Size = new System.Drawing.Size(44, 20);
-            this.CallQueueCol.TabIndex = 31;
             // 
             // SaveBtn
             // 
@@ -345,13 +348,13 @@
             // 
             // CancelBtn
             // 
+            this.CancelBtn.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.CancelBtn.Location = new System.Drawing.Point(174, 415);
             this.CancelBtn.Name = "CancelBtn";
             this.CancelBtn.Size = new System.Drawing.Size(75, 23);
             this.CancelBtn.TabIndex = 3;
             this.CancelBtn.Text = "Cancel";
             this.CancelBtn.UseVisualStyleBackColor = true;
-            this.CancelBtn.Click += new System.EventHandler(this.CancelBtn_Click);
             // 
             // label2
             // 
@@ -362,33 +365,43 @@
             this.label2.Text = "You can change the default column numbers for each of the values below. This will" +
     " change the way your Excel data file is processed.";
             // 
+            // advancedSettingsBindingSource
+            // 
+            this.advancedSettingsBindingSource.DataSource = typeof(PhoneLogs.Properties.AdvancedSettings);
+            // 
             // AdvancedSettings
             // 
+            this.AcceptButton = this.SaveBtn;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.CancelBtn;
             this.ClientSize = new System.Drawing.Size(261, 450);
+            this.ControlBox = false;
             this.Controls.Add(this.label2);
             this.Controls.Add(this.CancelBtn);
             this.Controls.Add(this.ResetBtn);
             this.Controls.Add(this.SaveBtn);
             this.Controls.Add(this.tableLayoutPanel1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Name = "AdvancedSettings";
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "AdvancedSettings";
+            this.Text = "Advanced Settings";
             this.Load += new System.EventHandler(this.AdvancedSettings_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.SessionIDCol)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.FromNameCol)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.FromNumberCol)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ToNameCol)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ToNumberCol)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.CallResultCol)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.CallLengthCol)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.HandleTimeCol)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.StartTimeCol)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.CallDirectionCol)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CallQueueCol)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CallDirectionCol)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.StartTimeCol)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.HandleTimeCol)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CallLengthCol)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CallResultCol)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ToNumberCol)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ToNameCol)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.FromNumberCol)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.FromNameCol)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SessionIDCol)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.advancedSettingsBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -422,5 +435,6 @@
         private System.Windows.Forms.Button ResetBtn;
         private System.Windows.Forms.Button CancelBtn;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.BindingSource advancedSettingsBindingSource;
     }
 }
