@@ -139,26 +139,7 @@ namespace PhoneLogs
         }
 
         /*
-         * private void SettingsTab_Enter(object sender, EventArgs e)
-        {
-            
-
-            var employees = new List<string>();
-            if (Properties.Settings.Default.Employees != null)
-            {
-                foreach (var employee in Properties.Settings.Default.Employees)
-                {
-                    employees.Add(employee);
-                }
-                EmployeesFilterBox.Text = string.Join(",", employees);
-            }
-            else
-            {
-                EmployeesFilterBox.Text = "";
-            }
-        }*/
-
-        /*
+        
     private void SaveSettingsBtn_Click(object sender, EventArgs e)
     {
 
@@ -180,9 +161,6 @@ namespace PhoneLogs
             Properties.Settings.Default.Employees = new StringCollection();
         }
 
-        Properties.Settings.Default.OutputFoler = OutputFolderLabel.Text;
-
-        Properties.Settings.Default.Sheet = (int)SheetNumberPicker.Value;
 
         Properties.Settings.Default.Save();
 

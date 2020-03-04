@@ -1,4 +1,5 @@
-﻿namespace PhoneLogs
+﻿
+namespace PhoneLogs
 {
     partial class SettingsForm
     {
@@ -51,8 +52,8 @@
             this.label17 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
-            this.SaveBtn = new System.Windows.Forms.Button();
-            this.ResetBtn = new System.Windows.Forms.Button();
+            this.SaveColumnBtn = new System.Windows.Forms.Button();
+            this.ResetColumnBtn = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -65,16 +66,18 @@
             this.FolderSameAsInput = new System.Windows.Forms.RadioButton();
             this.OutputFolderLabel = new System.Windows.Forms.Label();
             this.SelectOutputFolderBtn = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.SaveCommonBtn = new System.Windows.Forms.Button();
+            this.ResetCommonBtn = new System.Windows.Forms.Button();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.label8 = new System.Windows.Forms.Label();
             this.NoEmployeeFilterRadio = new System.Windows.Forms.RadioButton();
             this.EmployeeFilterTextBox = new System.Windows.Forms.TextBox();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabControl = new System.Windows.Forms.TabControl();
             this.CommonSettingsTab = new System.Windows.Forms.TabPage();
             this.label10 = new System.Windows.Forms.Label();
+            this.CloseCommonBtn = new System.Windows.Forms.Button();
             this.ColumnSettingsTab = new System.Windows.Forms.TabPage();
+            this.CloseColumnBtn = new System.Windows.Forms.Button();
             this.label12 = new System.Windows.Forms.Label();
             this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.tableLayoutPanel1.SuspendLayout();
@@ -94,7 +97,7 @@
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox6.SuspendLayout();
-            this.tabControl1.SuspendLayout();
+            this.tabControl.SuspendLayout();
             this.CommonSettingsTab.SuspendLayout();
             this.ColumnSettingsTab.SuspendLayout();
             this.SuspendLayout();
@@ -161,6 +164,7 @@
             this.CallResultCol.Name = "CallResultCol";
             this.CallResultCol.Size = new System.Drawing.Size(45, 20);
             this.CallResultCol.TabIndex = 26;
+            this.CallResultCol.ValueChanged += new System.EventHandler(this.NumberSelector_ValueChanged);
             // 
             // ToNumberCol
             // 
@@ -169,6 +173,7 @@
             this.ToNumberCol.Name = "ToNumberCol";
             this.ToNumberCol.Size = new System.Drawing.Size(43, 20);
             this.ToNumberCol.TabIndex = 25;
+            this.ToNumberCol.ValueChanged += new System.EventHandler(this.NumberSelector_ValueChanged);
             // 
             // ToNameCol
             // 
@@ -177,6 +182,7 @@
             this.ToNameCol.Name = "ToNameCol";
             this.ToNameCol.Size = new System.Drawing.Size(43, 20);
             this.ToNameCol.TabIndex = 24;
+            this.ToNameCol.ValueChanged += new System.EventHandler(this.NumberSelector_ValueChanged);
             // 
             // FromNumberCol
             // 
@@ -185,6 +191,7 @@
             this.FromNumberCol.Name = "FromNumberCol";
             this.FromNumberCol.Size = new System.Drawing.Size(43, 20);
             this.FromNumberCol.TabIndex = 23;
+            this.FromNumberCol.ValueChanged += new System.EventHandler(this.NumberSelector_ValueChanged);
             // 
             // FromNameCol
             // 
@@ -193,6 +200,7 @@
             this.FromNameCol.Name = "FromNameCol";
             this.FromNameCol.Size = new System.Drawing.Size(43, 20);
             this.FromNameCol.TabIndex = 22;
+            this.FromNameCol.ValueChanged += new System.EventHandler(this.NumberSelector_ValueChanged);
             // 
             // label9
             // 
@@ -256,6 +264,7 @@
             this.SessionIDCol.Name = "SessionIDCol";
             this.SessionIDCol.Size = new System.Drawing.Size(43, 20);
             this.SessionIDCol.TabIndex = 21;
+            this.SessionIDCol.ValueChanged += new System.EventHandler(this.NumberSelector_ValueChanged);
             // 
             // CallLengthCol
             // 
@@ -264,6 +273,7 @@
             this.CallLengthCol.Name = "CallLengthCol";
             this.CallLengthCol.Size = new System.Drawing.Size(45, 20);
             this.CallLengthCol.TabIndex = 27;
+            this.CallLengthCol.ValueChanged += new System.EventHandler(this.NumberSelector_ValueChanged);
             // 
             // HandleTimeCol
             // 
@@ -272,6 +282,7 @@
             this.HandleTimeCol.Name = "HandleTimeCol";
             this.HandleTimeCol.Size = new System.Drawing.Size(45, 20);
             this.HandleTimeCol.TabIndex = 28;
+            this.HandleTimeCol.ValueChanged += new System.EventHandler(this.NumberSelector_ValueChanged);
             // 
             // StartTimeCol
             // 
@@ -280,6 +291,7 @@
             this.StartTimeCol.Name = "StartTimeCol";
             this.StartTimeCol.Size = new System.Drawing.Size(45, 20);
             this.StartTimeCol.TabIndex = 29;
+            this.StartTimeCol.ValueChanged += new System.EventHandler(this.NumberSelector_ValueChanged);
             // 
             // CallDirectionCol
             // 
@@ -288,6 +300,7 @@
             this.CallDirectionCol.Name = "CallDirectionCol";
             this.CallDirectionCol.Size = new System.Drawing.Size(45, 20);
             this.CallDirectionCol.TabIndex = 30;
+            this.CallDirectionCol.ValueChanged += new System.EventHandler(this.NumberSelector_ValueChanged);
             // 
             // CallQueueCol
             // 
@@ -296,6 +309,7 @@
             this.CallQueueCol.Name = "CallQueueCol";
             this.CallQueueCol.Size = new System.Drawing.Size(45, 20);
             this.CallQueueCol.TabIndex = 31;
+            this.CallQueueCol.ValueChanged += new System.EventHandler(this.NumberSelector_ValueChanged);
             // 
             // label13
             // 
@@ -352,27 +366,27 @@
             this.label21.Text = "Call Queue Column";
             this.label21.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // SaveBtn
+            // SaveColumnBtn
             // 
-            this.SaveBtn.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SaveBtn.Location = new System.Drawing.Point(8, 395);
-            this.SaveBtn.Name = "SaveBtn";
-            this.SaveBtn.Size = new System.Drawing.Size(75, 25);
-            this.SaveBtn.TabIndex = 1;
-            this.SaveBtn.Text = "Save";
-            this.SaveBtn.UseVisualStyleBackColor = true;
-            this.SaveBtn.Click += new System.EventHandler(this.SaveBtn_Click);
+            this.SaveColumnBtn.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SaveColumnBtn.Location = new System.Drawing.Point(6, 403);
+            this.SaveColumnBtn.Name = "SaveColumnBtn";
+            this.SaveColumnBtn.Size = new System.Drawing.Size(75, 25);
+            this.SaveColumnBtn.TabIndex = 1;
+            this.SaveColumnBtn.Text = "Save";
+            this.SaveColumnBtn.UseVisualStyleBackColor = true;
+            this.SaveColumnBtn.Click += new System.EventHandler(this.SaveColumnBtn_Click);
             // 
-            // ResetBtn
+            // ResetColumnBtn
             // 
-            this.ResetBtn.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ResetBtn.Location = new System.Drawing.Point(89, 395);
-            this.ResetBtn.Name = "ResetBtn";
-            this.ResetBtn.Size = new System.Drawing.Size(75, 25);
-            this.ResetBtn.TabIndex = 2;
-            this.ResetBtn.Text = "Reset";
-            this.ResetBtn.UseVisualStyleBackColor = true;
-            this.ResetBtn.Click += new System.EventHandler(this.ResetBtn_Click);
+            this.ResetColumnBtn.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ResetColumnBtn.Location = new System.Drawing.Point(87, 403);
+            this.ResetColumnBtn.Name = "ResetColumnBtn";
+            this.ResetColumnBtn.Size = new System.Drawing.Size(75, 25);
+            this.ResetColumnBtn.TabIndex = 2;
+            this.ResetColumnBtn.Text = "Reset";
+            this.ResetColumnBtn.UseVisualStyleBackColor = true;
+            this.ResetColumnBtn.Click += new System.EventHandler(this.ResetColumnBtn_Click);
             // 
             // label2
             // 
@@ -412,6 +426,7 @@
             this.SheetSelector.Name = "SheetSelector";
             this.SheetSelector.Size = new System.Drawing.Size(44, 20);
             this.SheetSelector.TabIndex = 22;
+            this.SheetSelector.ValueChanged += new System.EventHandler(this.SheetSelector_ValueChanged);
             // 
             // groupBox3
             // 
@@ -506,27 +521,27 @@
             this.SelectOutputFolderBtn.UseVisualStyleBackColor = true;
             this.SelectOutputFolderBtn.Click += new System.EventHandler(this.SelectOutputFolderBtn_Click);
             // 
-            // button1
+            // SaveCommonBtn
             // 
-            this.button1.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(8, 395);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 25);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Save";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.SaveCommonBtn.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SaveCommonBtn.Location = new System.Drawing.Point(6, 403);
+            this.SaveCommonBtn.Name = "SaveCommonBtn";
+            this.SaveCommonBtn.Size = new System.Drawing.Size(75, 25);
+            this.SaveCommonBtn.TabIndex = 1;
+            this.SaveCommonBtn.Text = "Save";
+            this.SaveCommonBtn.UseVisualStyleBackColor = true;
+            this.SaveCommonBtn.Click += new System.EventHandler(this.SaveCommonBtn_Click);
             // 
-            // button2
+            // ResetCommonBtn
             // 
-            this.button2.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(89, 395);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 25);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "Reset";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.ResetCommonBtn.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ResetCommonBtn.Location = new System.Drawing.Point(87, 403);
+            this.ResetCommonBtn.Name = "ResetCommonBtn";
+            this.ResetCommonBtn.Size = new System.Drawing.Size(75, 25);
+            this.ResetCommonBtn.TabIndex = 2;
+            this.ResetCommonBtn.Text = "Reset";
+            this.ResetCommonBtn.UseVisualStyleBackColor = true;
+            this.ResetCommonBtn.Click += new System.EventHandler(this.ResetCommonBtn_Click);
             // 
             // groupBox6
             // 
@@ -574,23 +589,25 @@
             this.EmployeeFilterTextBox.TabIndex = 16;
             this.EmployeeFilterTextBox.TextChanged += new System.EventHandler(this.EmployeeFilterTextBox_TextChanged);
             // 
-            // tabControl1
+            // tabControl
             // 
-            this.tabControl1.Controls.Add(this.CommonSettingsTab);
-            this.tabControl1.Controls.Add(this.ColumnSettingsTab);
-            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl1.Location = new System.Drawing.Point(0, 0);
-            this.tabControl1.Multiline = true;
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(408, 456);
-            this.tabControl1.TabIndex = 8;
+            this.tabControl.Controls.Add(this.CommonSettingsTab);
+            this.tabControl.Controls.Add(this.ColumnSettingsTab);
+            this.tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl.Location = new System.Drawing.Point(0, 0);
+            this.tabControl.Multiline = true;
+            this.tabControl.Name = "tabControl";
+            this.tabControl.SelectedIndex = 0;
+            this.tabControl.Size = new System.Drawing.Size(408, 461);
+            this.tabControl.TabIndex = 8;
+            this.tabControl.Selecting += new System.Windows.Forms.TabControlCancelEventHandler(this.TabControl_Selecting);
             // 
             // CommonSettingsTab
             // 
             this.CommonSettingsTab.Controls.Add(this.label10);
-            this.CommonSettingsTab.Controls.Add(this.button1);
-            this.CommonSettingsTab.Controls.Add(this.button2);
+            this.CommonSettingsTab.Controls.Add(this.SaveCommonBtn);
+            this.CommonSettingsTab.Controls.Add(this.CloseCommonBtn);
+            this.CommonSettingsTab.Controls.Add(this.ResetCommonBtn);
             this.CommonSettingsTab.Controls.Add(this.groupBox6);
             this.CommonSettingsTab.Controls.Add(this.groupBox5);
             this.CommonSettingsTab.Controls.Add(this.groupBox3);
@@ -598,7 +615,7 @@
             this.CommonSettingsTab.Location = new System.Drawing.Point(4, 23);
             this.CommonSettingsTab.Name = "CommonSettingsTab";
             this.CommonSettingsTab.Padding = new System.Windows.Forms.Padding(3);
-            this.CommonSettingsTab.Size = new System.Drawing.Size(400, 429);
+            this.CommonSettingsTab.Size = new System.Drawing.Size(400, 434);
             this.CommonSettingsTab.TabIndex = 0;
             this.CommonSettingsTab.Text = "Common Settings";
             this.CommonSettingsTab.UseVisualStyleBackColor = true;
@@ -607,32 +624,55 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(170, 400);
+            this.label10.Location = new System.Drawing.Point(6, 386);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(159, 14);
             this.label10.TabIndex = 27;
             this.label10.Text = "(Only affect settings in this tab)";
             // 
+            // CloseCommonBtn
+            // 
+            this.CloseCommonBtn.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CloseCommonBtn.Location = new System.Drawing.Point(319, 403);
+            this.CloseCommonBtn.Name = "CloseCommonBtn";
+            this.CloseCommonBtn.Size = new System.Drawing.Size(75, 25);
+            this.CloseCommonBtn.TabIndex = 2;
+            this.CloseCommonBtn.Text = "Close";
+            this.CloseCommonBtn.UseVisualStyleBackColor = true;
+            this.CloseCommonBtn.Click += new System.EventHandler(this.CloseBtn_Click);
+            // 
             // ColumnSettingsTab
             // 
+            this.ColumnSettingsTab.Controls.Add(this.CloseColumnBtn);
             this.ColumnSettingsTab.Controls.Add(this.label12);
             this.ColumnSettingsTab.Controls.Add(this.label2);
             this.ColumnSettingsTab.Controls.Add(this.tableLayoutPanel1);
-            this.ColumnSettingsTab.Controls.Add(this.SaveBtn);
-            this.ColumnSettingsTab.Controls.Add(this.ResetBtn);
+            this.ColumnSettingsTab.Controls.Add(this.SaveColumnBtn);
+            this.ColumnSettingsTab.Controls.Add(this.ResetColumnBtn);
             this.ColumnSettingsTab.Location = new System.Drawing.Point(4, 23);
             this.ColumnSettingsTab.Name = "ColumnSettingsTab";
             this.ColumnSettingsTab.Padding = new System.Windows.Forms.Padding(3);
-            this.ColumnSettingsTab.Size = new System.Drawing.Size(400, 429);
+            this.ColumnSettingsTab.Size = new System.Drawing.Size(400, 434);
             this.ColumnSettingsTab.TabIndex = 1;
             this.ColumnSettingsTab.Text = "Column Settings";
             this.ColumnSettingsTab.UseVisualStyleBackColor = true;
             this.ColumnSettingsTab.Enter += new System.EventHandler(this.ColumnSettingsTab_Enter);
             // 
+            // CloseColumnBtn
+            // 
+            this.CloseColumnBtn.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CloseColumnBtn.Location = new System.Drawing.Point(319, 403);
+            this.CloseColumnBtn.Name = "CloseColumnBtn";
+            this.CloseColumnBtn.Size = new System.Drawing.Size(75, 25);
+            this.CloseColumnBtn.TabIndex = 29;
+            this.CloseColumnBtn.Text = "Close";
+            this.CloseColumnBtn.UseVisualStyleBackColor = true;
+            this.CloseColumnBtn.Click += new System.EventHandler(this.CloseBtn_Click);
+            // 
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(170, 400);
+            this.label12.Location = new System.Drawing.Point(6, 386);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(159, 14);
             this.label12.TabIndex = 28;
@@ -642,8 +682,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(408, 456);
-            this.Controls.Add(this.tabControl1);
+            this.ClientSize = new System.Drawing.Size(408, 461);
+            this.Controls.Add(this.tabControl);
             this.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.MaximizeBox = false;
@@ -672,7 +712,7 @@
             this.groupBox4.PerformLayout();
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
-            this.tabControl1.ResumeLayout(false);
+            this.tabControl.ResumeLayout(false);
             this.CommonSettingsTab.ResumeLayout(false);
             this.CommonSettingsTab.PerformLayout();
             this.ColumnSettingsTab.ResumeLayout(false);
@@ -705,12 +745,12 @@
         private System.Windows.Forms.NumericUpDown ToNumberCol;
         private System.Windows.Forms.NumericUpDown ToNameCol;
         private System.Windows.Forms.NumericUpDown FromNumberCol;
-        private System.Windows.Forms.Button SaveBtn;
-        private System.Windows.Forms.Button ResetBtn;
+        private System.Windows.Forms.Button SaveColumnBtn;
+        private System.Windows.Forms.Button ResetColumnBtn;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.NumericUpDown SheetSelector;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button SaveCommonBtn;
+        private System.Windows.Forms.Button ResetCommonBtn;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.GroupBox groupBox3;
@@ -726,11 +766,13 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.RadioButton NoEmployeeFilterRadio;
         private System.Windows.Forms.TextBox EmployeeFilterTextBox;
-        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabControl tabControl;
         private System.Windows.Forms.TabPage CommonSettingsTab;
         private System.Windows.Forms.TabPage ColumnSettingsTab;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog;
+        private System.Windows.Forms.Button CloseCommonBtn;
+        private System.Windows.Forms.Button CloseColumnBtn;
     }
 }

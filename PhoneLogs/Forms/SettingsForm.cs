@@ -1,14 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.ComponentModel;
 using System.Windows.Forms;
 
 namespace PhoneLogs
 {
     public partial class SettingsForm : Form
     {
+        private bool _dirty_settings;
+
         public SettingsForm()
         {
             InitializeComponent();
+            _dirty_settings = false;
         }
 
         private void CommonSettingsTab_Enter(object sender, EventArgs e)
@@ -44,6 +49,8 @@ namespace PhoneLogs
                 NoEmployeeFilterRadio.Checked = true;
                 EmployeeFilterTextBox.Text = "";
             }
+
+            _dirty_settings = false;
         }
 
         private void ColumnSettingsTab_Enter(object sender, EventArgs e)
@@ -61,9 +68,11 @@ namespace PhoneLogs
             StartTimeCol.Value = settings.StartTimeColumn;
             CallDirectionCol.Value = settings.CallDirectionColumn;
             CallQueueCol.Value = settings.CallQueueColumn;
+
+            _dirty_settings = false;
         }
 
-        private void ResetBtn_Click(object sender, EventArgs e)
+        private void ResetColumnBtn_Click(object sender, EventArgs e)
         {
             var resetConfirmed = MessageBox.Show(
                 "Are you sure you'd like to reset to default settings?",
@@ -72,12 +81,15 @@ namespace PhoneLogs
 
             if (resetConfirmed == DialogResult.Yes)
             {
-                Properties.ColumnSettings.Default.Reset();
-                this.Close();
+                var settings = Properties.ColumnSettings.Default;
+
+                settings.Reset();
+                settings.Save();
+                ColumnSettingsTab_Enter(sender, e);
             }
         }
 
-        private void SaveBtn_Click(object sender, EventArgs e)
+        private void SaveColumnBtn_Click(object sender, EventArgs e)
         {
             var settings = Properties.ColumnSettings.Default;
 
@@ -93,21 +105,67 @@ namespace PhoneLogs
             settings.CallDirectionColumn = (int)CallDirectionCol.Value;
             settings.CallQueueColumn = (int)CallQueueCol.Value;
 
-            this.Close();
+            settings.Save();
+            _dirty_settings = false;
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void SaveCommonBtn_Click(object sender, EventArgs e)
         {
+            var settings = Properties.CommonSettings.Default;
 
+            //-- sheet selector
+            settings.Sheet = (int)SheetSelector.Value;
+
+            //-- output folder
+            settings.OutputFolder = OutputFolderLabel.Text;
+
+            //-- output filename
+            settings.OutputFileName = OutputFileNameTextBox.Text;
+
+            //-- employees filter
+            if (!string.IsNullOrWhiteSpace(EmployeeFilterTextBox.Text))
+            {
+                var employees = EmployeeFilterTextBox.Text.Split(',');
+                if (settings.Employees == null)
+                {
+                    settings.Employees = new StringCollection();
+                }
+                settings.Employees.Clear();
+                foreach (var employee in employees)
+                {
+                    settings.Employees.Add(employee.Trim());
+                }
+            }
+            else
+            {
+                settings.Employees = new StringCollection();
+            }
+
+            //-- save
+            settings.Save();
+            _dirty_settings = false;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void ResetCommonBtn_Click(object sender, EventArgs e)
         {
+            var resetConfirmed = MessageBox.Show(
+                "Are you sure you'd like to reset to default settings?",
+                "Confirm",
+                MessageBoxButtons.YesNo);
 
+            if (resetConfirmed == DialogResult.Yes)
+            {
+                var settings = Properties.CommonSettings.Default;
+
+                settings.Reset();
+                settings.Save();
+                CommonSettingsTab_Enter(sender, e);
+            }
         }
 
         private void FolderSameAsInput_CheckedChanged(object sender, EventArgs e)
         {
+            _dirty_settings = true;
             if (FolderSameAsInput.Checked)
             {
                 OutputFolderLabel.Text = "";
@@ -116,6 +174,7 @@ namespace PhoneLogs
 
         private void FileNameSameAsInput_CheckedChanged(object sender, EventArgs e)
         {
+            _dirty_settings = true;
             if (FileNameSameAsInput.Checked)
             {
                 OutputFileNameTextBox.Text = "";
@@ -124,6 +183,7 @@ namespace PhoneLogs
 
         private void NoEmployeeFilterRadio_CheckedChanged(object sender, EventArgs e)
         {
+            _dirty_settings = true;
             if (NoEmployeeFilterRadio.Checked)
             {
                 EmployeeFilterTextBox.Text = "";
@@ -132,6 +192,7 @@ namespace PhoneLogs
 
         private void OutputFileNameTextBox_TextChanged(object sender, EventArgs e)
         {
+            _dirty_settings = true;
             if (OutputFileNameTextBox.Text != string.Empty)
             {
                 FileNameSameAsInput.Checked = false;
@@ -140,6 +201,7 @@ namespace PhoneLogs
 
         private void EmployeeFilterTextBox_TextChanged(object sender, EventArgs e)
         {
+            _dirty_settings = true;
             if (EmployeeFilterTextBox.Text != string.Empty)
             {
                 NoEmployeeFilterRadio.Checked = false;
@@ -152,7 +214,41 @@ namespace PhoneLogs
             {
                 OutputFolderLabel.Text = folderBrowserDialog.SelectedPath;
                 FolderSameAsInput.Checked = false;
+                _dirty_settings = true;
             }
+        }
+
+        private void CloseBtn_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void TabControl_Selecting(object sender, TabControlCancelEventArgs e)
+        {
+            if (_dirty_settings)
+            {
+                var abortConfirmed = MessageBox.Show(
+                "Are you sure you'd like to abort modified values?",
+                "Confirm",
+                MessageBoxButtons.YesNo);
+
+                if (abortConfirmed == DialogResult.Yes)
+                {
+                    return;
+                }
+
+                e.Cancel = true;
+            }
+        }
+
+        private void SheetSelector_ValueChanged(object sender, EventArgs e)
+        {
+            _dirty_settings = true;
+        }
+
+        private void NumberSelector_ValueChanged(object sender, EventArgs e)
+        {
+            _dirty_settings = true;
         }
     }
 }
