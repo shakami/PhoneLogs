@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 
-namespace PhoneLogs
+namespace PhoneLogs.Services
 {
     public static class ExcelToPDFService
     {

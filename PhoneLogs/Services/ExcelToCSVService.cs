@@ -2,7 +2,7 @@
 using System.Runtime.InteropServices;
 using Excel = Microsoft.Office.Interop.Excel;
 
-namespace PhoneLogs
+namespace PhoneLogs.Services
 {
     public class ExcelToCSVService
     {

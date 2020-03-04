@@ -4,7 +4,7 @@ using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Windows.Forms;
 
-namespace PhoneLogs
+namespace PhoneLogs.Forms
 {
     public partial class SettingsForm : Form
     {

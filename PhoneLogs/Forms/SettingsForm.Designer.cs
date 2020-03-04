@@ -1,5 +1,7 @@
 ﻿
-namespace PhoneLogs
+using System.Windows.Forms;
+
+namespace PhoneLogs.Forms
 {
     partial class SettingsForm
     {

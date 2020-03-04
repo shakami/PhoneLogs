@@ -1,10 +1,12 @@
-﻿using System;
+﻿using PhoneLogs.Forms;
+using PhoneLogs.Services;
+using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace PhoneLogs
+namespace PhoneLogs.Forms
 {
     public partial class MainForm : Form
     {
@@ -211,6 +213,11 @@ namespace PhoneLogs
         {
             new SettingsForm().ShowDialog();
             InitializeControls();
+        }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new AboutBox().ShowDialog();
         }
 
 

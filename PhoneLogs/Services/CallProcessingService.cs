@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace PhoneLogs
+namespace PhoneLogs.Services
 {
     public class CallProcessingService
     {

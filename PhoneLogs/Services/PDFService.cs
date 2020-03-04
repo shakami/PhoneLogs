@@ -12,7 +12,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-namespace PhoneLogs
+namespace PhoneLogs.Services
 {
     public class PDFService
     {
