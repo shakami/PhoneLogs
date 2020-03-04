@@ -37,17 +37,20 @@ namespace PhoneLogs
             var employees = new List<string>();
             if (settings.Employees != null)
             {
-                foreach (var employee in settings.Employees)
+                if (settings.Employees.Count > 0)
                 {
-                    employees.Add(employee);
+                    foreach (var employee in settings.Employees)
+                    {
+                        employees.Add(employee);
+                    }
+                    NoEmployeeFilterRadio.Checked = false;
+                    EmployeeFilterTextBox.Text = string.Join(",", employees);
                 }
-                NoEmployeeFilterRadio.Checked = false;
-                EmployeeFilterTextBox.Text = string.Join(",", employees);
-            }
-            else
-            {
-                NoEmployeeFilterRadio.Checked = true;
-                EmployeeFilterTextBox.Text = "";
+                else
+                {
+                    NoEmployeeFilterRadio.Checked = true;
+                    EmployeeFilterTextBox.Text = "";
+                }
             }
 
             _dirty_settings = false;

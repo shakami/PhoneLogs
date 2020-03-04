@@ -154,52 +154,5 @@ namespace PhoneLogs.Properties {
                 this["CallQueueColumn"] = value;
             }
         }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("2")]
-        public int Sheet {
-            get {
-                return ((int)(this["Sheet"]));
-            }
-            set {
-                this["Sheet"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        public global::System.Collections.Specialized.StringCollection Employees {
-            get {
-                return ((global::System.Collections.Specialized.StringCollection)(this["Employees"]));
-            }
-            set {
-                this["Employees"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string OutputFolder {
-            get {
-                return ((string)(this["OutputFolder"]));
-            }
-            set {
-                this["OutputFolder"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string OutputFileName {
-            get {
-                return ((string)(this["OutputFileName"]));
-            }
-            set {
-                this["OutputFileName"] = value;
-            }
-        }
     }
 }

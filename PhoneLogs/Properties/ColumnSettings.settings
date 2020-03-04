@@ -1,5 +1,5 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="PhoneLogs.Properties" GeneratedClassName="AdvancedSettings">
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="PhoneLogs.Properties" GeneratedClassName="ColumnSettings">
   <Profiles />
   <Settings>
     <Setting Name="SessionIDColumn" Type="System.Int32" Scope="User">
@@ -34,18 +34,6 @@
     </Setting>
     <Setting Name="CallQueueColumn" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">11</Value>
-    </Setting>
-    <Setting Name="Sheet" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">2</Value>
-    </Setting>
-    <Setting Name="Employees" Type="System.Collections.Specialized.StringCollection" Scope="User">
-      <Value Profile="(Default)" />
-    </Setting>
-    <Setting Name="OutputFolder" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
-    </Setting>
-    <Setting Name="OutputFileName" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
     </Setting>
   </Settings>
 </SettingsFile>
