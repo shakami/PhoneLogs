@@ -691,7 +691,6 @@ namespace PhoneLogs.Forms
             this.MaximizeBox = false;
             this.Name = "SettingsForm";
             this.ShowInTaskbar = false;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Settings";
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
