@@ -53,6 +53,8 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.FileNameSameAsInput = new System.Windows.Forms.RadioButton();
             this.ProgressLabel = new System.Windows.Forms.Label();
+            this.backgroundWorker = new System.ComponentModel.BackgroundWorker();
+            this.progressBar = new System.Windows.Forms.ProgressBar();
             this.menuStrip.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -81,7 +83,7 @@
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(93, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItem_Click);
             // 
@@ -103,7 +105,7 @@
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.AboutToolStripMenuItem_Click);
             // 
@@ -298,12 +300,27 @@
             this.ProgressLabel.Text = "Progress";
             this.ProgressLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // backgroundWorker
+            // 
+            this.backgroundWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.BackgroundWorker_DoWork);
+            this.backgroundWorker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.UpdateProgress);
+            this.backgroundWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.ProcessCompleted);
+            // 
+            // progressBar
+            // 
+            this.progressBar.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.progressBar.Location = new System.Drawing.Point(0, 456);
+            this.progressBar.Name = "progressBar";
+            this.progressBar.Size = new System.Drawing.Size(414, 23);
+            this.progressBar.TabIndex = 25;
+            // 
             // MainForm
             // 
             this.AcceptButton = this.ProcessBtn;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(414, 459);
+            this.ClientSize = new System.Drawing.Size(414, 479);
+            this.Controls.Add(this.progressBar);
             this.Controls.Add(this.ProgressLabel);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -359,6 +376,8 @@
         private System.Windows.Forms.RadioButton FolderSameAsInput;
         private System.Windows.Forms.RadioButton FileNameSameAsInput;
         private System.Windows.Forms.Label ProgressLabel;
+        private System.ComponentModel.BackgroundWorker backgroundWorker;
+        private System.Windows.Forms.ProgressBar progressBar;
     }
 }
 

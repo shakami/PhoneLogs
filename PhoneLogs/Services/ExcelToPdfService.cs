@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 
 namespace PhoneLogs.Services
 {
     public static class ExcelToPDFService
     {
-        public static void GenerateLog(string inputPath, string outputPath)
+        public static void GenerateLog(BackgroundWorker backgroundWorker, string inputPath, string outputPath)
         {
             var pdfPath = outputPath + ".pdf";
             var csvPath = outputPath + ".csv";
@@ -19,10 +20,12 @@ namespace PhoneLogs.Services
                 excelApp.GetOutput(csvPath);
 
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                throw new ApplicationException("Error processing the Excel worksheet.", e);
+                throw new ApplicationException("Error processing the Excel worksheet.", ex);
             }
+
+            backgroundWorker.ReportProgress(40);
 
             var columns = Properties.ColumnSettings.Default;
             var csvToCallService = new CSVToCallsService(columns.SessionIDColumn,
@@ -43,15 +46,17 @@ namespace PhoneLogs.Services
             {
                 calls = csvToCallService.ParseCSV(csvPath);
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                throw new ApplicationException("Error reading data from file.", e);
+                throw new ApplicationException("Error reading data from file.", ex);
             }
+
+            backgroundWorker.ReportProgress(60);
 
             var callProcessing = new CallProcessingService(calls);
 
             var employees = Properties.CommonSettings.Default.Employees.Cast<string>().ToList();
-            
+
             Dictionary<string, CallLog> processedCalls;
             Dictionary<string, CallStats> totalStats;
 
@@ -61,21 +66,24 @@ namespace PhoneLogs.Services
                 totalStats = callProcessing.GetTotalStats(employees);
 
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                throw new ApplicationException("Error performing queries on phone call logs.", e);
+                throw new ApplicationException("Error performing queries on phone call logs.", ex);
             }
 
-            var pdfService = new PDFService(pdfPath);
+            backgroundWorker.ReportProgress(80);
 
             try
             {
+                var pdfService = new PDFService(pdfPath);
                 pdfService.GenerateOutput(processedCalls, totalStats);
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                throw new ApplicationException("Error generating PDF file from data", e);
+                throw new ApplicationException("Error generating PDF file from data.", ex);
             }
+
+            backgroundWorker.ReportProgress(100);
         }
     }
 }

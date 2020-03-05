@@ -1,9 +1,6 @@
-﻿using PhoneLogs.Forms;
-using PhoneLogs.Services;
+﻿using PhoneLogs.Services;
 using System;
-using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.Linq;
+using System.ComponentModel;
 using System.Windows.Forms;
 
 namespace PhoneLogs.Forms
@@ -13,10 +10,34 @@ namespace PhoneLogs.Forms
         public MainForm()
         {
             InitializeComponent();
+            backgroundWorker.WorkerReportsProgress = true;
+        }
+
+        private void ProcessCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            if (e.Result.ToString() == "success")
+            {
+                ProgressLabel.Text = "Done!";
+                OpenPDFBtn.Enabled = true;
+                OpenOutputFolderBtn.Enabled = true;
+                return;
+            }
+
+            MessageBox.Show($"Something bad happened. {e.Result}", "Error", MessageBoxButtons.OK);
+            InitializeControls();
+        }
+
+        private void UpdateProgress(object sender, ProgressChangedEventArgs e)
+        {
+            progressBar.Value = e.ProgressPercentage;
         }
 
         private void InitializeControls()
         {
+            progressBar.Value = 0;
+
+            ProgressLabel.Text = "";
+
             var settings = Properties.CommonSettings.Default;
 
             //-- output folder
@@ -104,27 +125,10 @@ namespace PhoneLogs.Forms
 
             SaveOutputSettings();
 
-            OpenPDFBtn.Enabled = false;
-            OpenOutputFolderBtn.Enabled = false;
-
             var inputPath = InputFilePathLabel.Text;
             var outputPath = GetOutputPath(fullPath: true);
 
-            try
-            {
-                ExcelToPDFService.GenerateLog(inputPath, outputPath);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Something bad happened. {ex.Message}", "Error", MessageBoxButtons.OK);
-                InitializeControls();
-                return;
-            }
-
-            OpenPDFBtn.Enabled = true;
-            OpenOutputFolderBtn.Enabled = true;
-
-            ProgressLabel.Text = "Done!";
+            backgroundWorker.RunWorkerAsync(new string[] { inputPath, outputPath });
         }
 
         private void SelectOutputFolderBtn_Click(object sender, EventArgs e)
@@ -149,37 +153,6 @@ namespace PhoneLogs.Forms
                 GetOutputPath(fullPath: false));
         }
 
-        /*
-        
-    private void SaveSettingsBtn_Click(object sender, EventArgs e)
-    {
-
-        if (!string.IsNullOrWhiteSpace(EmployeesFilterBox.Text))
-        {
-            var employees = EmployeesFilterBox.Text.Split(',');
-            if (Properties.Settings.Default.Employees == null)
-            {
-                Properties.Settings.Default.Employees = new StringCollection();
-            }
-            Properties.Settings.Default.Employees.Clear();
-            foreach (var employee in employees)
-            {
-                Properties.Settings.Default.Employees.Add(employee.Trim());
-            }
-        }
-        else
-        {
-            Properties.Settings.Default.Employees = new StringCollection();
-        }
-
-
-        Properties.Settings.Default.Save();
-
-        OpenPDFBtn.Enabled = false;
-        OpenFolderBtn.Enabled = false;
-        ResultLabel.Text = "";
-    }
-    */
         private void FolderSameAsInput_CheckedChanged(object sender, EventArgs e)
         {
             if (FolderSameAsInput.Checked)
@@ -229,16 +202,28 @@ namespace PhoneLogs.Forms
             new AboutBox().ShowDialog();
         }
 
-
-        /*
-        private void AdvancedSettingsBtn_Click(object sender, EventArgs e)
+        private void BackgroundWorker_DoWork(object sender, DoWorkEventArgs e)
         {
-            new AdvancedSettings().ShowDialog();
+            var bw = sender as BackgroundWorker;
+            var args = e.Argument as string[];
+            var inputPath = args[0];
+            var outputPath = args[1];
+
+            try
+            {
+                ExcelToPDFService.GenerateLog(bw, inputPath, outputPath);
+            }
+            catch (ApplicationException ex)
+            {
+                var message = ex.Message;
+                if (ex.InnerException != null)
+                {
+                    message += "\n\nDetails: " + ex.InnerException.Message;
+                }
+                e.Result = message;
+                return;
+            }
+            e.Result = "success";
         }
-
-        private void label5_Click(object sender, EventArgs e)
-        {
-
-        }*/
     }
 }

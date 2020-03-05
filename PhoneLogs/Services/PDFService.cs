@@ -3,7 +3,6 @@ using iText.Kernel.Colors;
 using iText.Kernel.Font;
 using iText.Kernel.Geom;
 using iText.Kernel.Pdf;
-using iText.Kernel.Pdf.Canvas.Draw;
 using iText.Layout;
 using iText.Layout.Borders;
 using iText.Layout.Element;
@@ -32,15 +31,21 @@ namespace PhoneLogs.Services
 
         public PDFService(string filePath)
         {
+            _doc = OpenPDFFile(filePath);
+        }
+
+        private Document OpenPDFFile(string filePath)
+        {
             FileInfo file = new FileInfo(filePath);
             file.Directory.Create();
 
             PdfDocument pdfDoc = new PdfDocument(new PdfWriter(filePath));
-            _doc = new Document(pdfDoc, PageSize.LETTER.Rotate());
+            return new Document(pdfDoc, PageSize.LETTER.Rotate());
         }
 
         public void GenerateOutput(Dictionary<string, CallLog> data, Dictionary<string, CallStats> totalStats)
         {
+
             _doc.Add(GenerateOuputForTotalStats(totalStats["Total"]));
             totalStats.Remove("Total");
 

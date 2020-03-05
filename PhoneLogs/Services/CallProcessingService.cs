@@ -70,46 +70,5 @@ namespace PhoneLogs.Services
 
             return result;
         }
-
-
-        //public Dictionary<string, CallLog> GetCallsPerPerson(List<String> employees)
-        //{
-        //    var result = new Dictionary<string, CallLog>();
-
-        //    var callsFrom = _calls
-        //        .Where(c => !string.IsNullOrWhiteSpace(c.FromName))
-        //        .GroupBy(c => c.FromName)
-        //        .Select(group => new { Employee = group.Key, CallsFrom = group.OrderBy(c => c.StartTime) });
-
-        //    var callsTo = _calls
-        //        .Where(c => !string.IsNullOrWhiteSpace(c.ToName))
-        //        .GroupBy(c => c.ToName)
-        //        .Select(group => new { Employee = group.Key, CallsTo = group.OrderBy(c => c.StartTime) });
-
-        //    if (employees.Any())
-        //    {
-        //        callsFrom = callsFrom.Where(c => employees.Contains(c.Employee, StringComparer.OrdinalIgnoreCase));
-        //        callsTo = callsTo.Where(c => employees.Contains(c.Employee, StringComparer.OrdinalIgnoreCase));
-        //    }
-
-        //    foreach (var item in callsFrom)
-        //    {
-        //        result.Add(item.Employee, new CallLog() { CallsFrom = item.CallsFrom.ToList() });
-        //    }
-
-        //    foreach (var item in callsTo)
-        //    {
-        //        result.TryGetValue(item.Employee, out CallLog log);
-        //        if (log == null)
-        //        {
-        //            result.Add(item.Employee, new CallLog() { CallsTo = item.CallsTo.ToList() });
-        //        } else
-        //        {
-        //            log.CallsTo = item.CallsTo.ToList();
-        //        }
-        //    }
-
-        //    return result;
-        //}
     }
 }
