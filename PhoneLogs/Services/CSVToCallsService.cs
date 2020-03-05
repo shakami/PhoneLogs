@@ -63,7 +63,7 @@ namespace PhoneLogs.Services
                                     values[_to_name_index],
                                     values[_to_number_index],
                                     values[_call_result_index],
-                                    values[_call_length_index],
+                                    TimeSpan.Parse(values[_call_length_index]),
                                     values[_handle_time_index],
                                     DateTime.Parse(values[_start_time_index]),
                                     values[_call_direction_index],

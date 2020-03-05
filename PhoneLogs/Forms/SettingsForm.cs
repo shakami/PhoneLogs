@@ -223,19 +223,24 @@ namespace PhoneLogs.Forms
 
         private void CloseBtn_Click(object sender, EventArgs e)
         {
-            this.Close();
+            if (!_dirty_settings)
+            {
+                this.Close();
+                return;
+            }
+
+            if (ShowAbortDialog())
+            {
+                this.Close();
+                return;
+            }
         }
 
         private void TabControl_Selecting(object sender, TabControlCancelEventArgs e)
         {
             if (_dirty_settings)
             {
-                var abortConfirmed = MessageBox.Show(
-                "Are you sure you'd like to abort modified values?",
-                "Confirm",
-                MessageBoxButtons.YesNo);
-
-                if (abortConfirmed == DialogResult.Yes)
+                if (ShowAbortDialog())
                 {
                     return;
                 }
@@ -253,5 +258,16 @@ namespace PhoneLogs.Forms
         {
             _dirty_settings = true;
         }
+
+        private bool ShowAbortDialog()
+        {
+            var abortConfirmed = MessageBox.Show(
+                "Are you sure you'd like to abort modified values?",
+                "Confirm",
+                MessageBoxButtons.YesNo);
+
+            return abortConfirmed == DialogResult.Yes;
+        }
+
     }
 }

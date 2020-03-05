@@ -14,7 +14,7 @@ namespace PhoneLogs
                     string toName,
                     string toNumber,
                     string callResult,
-                    string callLength,
+                    TimeSpan callLength,
                     string handleTime,
                     DateTime startTime,
                     string callDirection,
@@ -26,7 +26,7 @@ namespace PhoneLogs
             ToName = toName ?? throw new ArgumentNullException(nameof(toName));
             ToNumber = toNumber ?? throw new ArgumentNullException(nameof(toNumber));
             CallResult = callResult ?? throw new ArgumentNullException(nameof(callResult));
-            CallLength = callLength ?? throw new ArgumentNullException(nameof(callLength));
+            CallLength = callLength;
             HandleTime = handleTime ?? throw new ArgumentNullException(nameof(handleTime));
             StartTime = startTime;
             CallDirection = callDirection ?? throw new ArgumentNullException(nameof(callDirection));
@@ -39,7 +39,7 @@ namespace PhoneLogs
         public string ToName { get; }
         public string ToNumber { get; }
         public string CallResult { get; }
-        public string CallLength { get; }
+        public TimeSpan CallLength { get; }
         public string HandleTime { get; }
         public DateTime StartTime { get; }
         public string CallDirection { get; }

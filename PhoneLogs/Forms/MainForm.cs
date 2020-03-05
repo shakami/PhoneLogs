@@ -103,14 +103,23 @@ namespace PhoneLogs.Forms
             ProgressLabel.Text = "Working...";
 
             SaveOutputSettings();
-            
+
             OpenPDFBtn.Enabled = false;
             OpenOutputFolderBtn.Enabled = false;
 
             var inputPath = InputFilePathLabel.Text;
             var outputPath = GetOutputPath(fullPath: true);
 
-            ExcelToPDFService.GenerateLog(inputPath, outputPath);
+            try
+            {
+                ExcelToPDFService.GenerateLog(inputPath, outputPath);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Something bad happened. {ex.Message}", "Error", MessageBoxButtons.OK);
+                InitializeControls();
+                return;
+            }
 
             OpenPDFBtn.Enabled = true;
             OpenOutputFolderBtn.Enabled = true;
@@ -215,7 +224,7 @@ namespace PhoneLogs.Forms
             InitializeControls();
         }
 
-        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             new AboutBox().ShowDialog();
         }

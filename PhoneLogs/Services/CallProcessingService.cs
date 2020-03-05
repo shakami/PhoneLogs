@@ -13,6 +13,29 @@ namespace PhoneLogs.Services
             _calls = calls ?? throw new ArgumentNullException(nameof(calls));
         }
 
+        public Dictionary<string, CallStats> GetTotalStats(List<string> employees)
+        {
+            var filteredCalls = _calls;
+            if (employees.Any())
+            {
+                filteredCalls = _calls
+                    .Where(c => employees.Contains(c.ToName, StringComparer.OrdinalIgnoreCase) ||
+                                employees.Contains(c.FromName, StringComparer.OrdinalIgnoreCase));
+            }
+
+            var queues = filteredCalls
+                .Where(c => c.CallQueue != string.Empty)
+                .GroupBy(c => c.CallQueue)
+                .ToDictionary(q => q.Key, q => CallStats.GetStats(q));
+
+            var result = queues;
+
+            var totalStats = CallStats.GetStats(filteredCalls);
+            result.Add("Total", totalStats);
+            
+            return result;
+        }
+
         public Dictionary<string, CallLog> GetCallsPerPerson(List<string> employees)
         {
             var logs = new Dictionary<string, CallLog>(StringComparer.OrdinalIgnoreCase);
