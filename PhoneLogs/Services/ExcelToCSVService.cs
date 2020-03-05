@@ -19,6 +19,7 @@ namespace PhoneLogs.Services
             };
             workbook = excelApp.Workbooks.Open(inputPath);
             worksheet = workbook.Sheets[sheet];
+            worksheet.Select();
             data = worksheet.UsedRange;
         }
 
